@@ -1,8 +1,8 @@
 {
     "name": "eslint-config-nstarter",
-    "description": "",
+    "description": "Basic eslint rules for nstarter projects.",
     "license": "MIT",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "readme": "README.md",
     "repository": {
         "type": "git",

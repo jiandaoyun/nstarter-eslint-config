@@ -3,7 +3,7 @@ Basic eslint rules for nstarter projects.
 ## Install
 
 ```
-npm install --save-dev eslint-config-nstarter
+npm install --save-dev eslint typescript eslint-config-nstarter
 ```
 
 ## Usage
