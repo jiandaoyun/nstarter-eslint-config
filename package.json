@@ -2,11 +2,11 @@
     "name": "eslint-config-nstarter",
     "description": "Basic eslint rules for nstarter projects.",
     "license": "MIT",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "readme": "README.md",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/jiandaoyun/nstarter-eslint-config"
     },
     "keywords": [
         "nstarter",
