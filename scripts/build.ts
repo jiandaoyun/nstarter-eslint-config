@@ -118,14 +118,9 @@ class Builder {
  *     ${pkg.contributors.join('\n *     ')}
  *
  * 依赖版本：
- *     ${[
-                'eslint',
-                'babel-eslint',
-                '@typescript-eslint/parser',
-                '@typescript-eslint/eslint-plugin'
-            ]
-                .map((key) => `${key} ${pkg.devDependencies[key]}`)
-                .join('\n *     ')}
+ *     ${['eslint', 'babel-eslint', '@typescript-eslint/parser', '@typescript-eslint/eslint-plugin']
+     .map((key) => `${key} ${pkg.devDependencies[key]}`)
+     .join('\n *     ')}
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  *
