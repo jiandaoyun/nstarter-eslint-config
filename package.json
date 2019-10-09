@@ -2,7 +2,7 @@
     "name": "eslint-config-nstarter",
     "version": "3.0.0",
     "description": "nstarter ESLint 规则",
-    "main": "index.js",
+    "main": "nodes.js",
     "scripts": {
         "start": "npm run dev",
         "dev": "run-p dev:eslintrc dev:site",
