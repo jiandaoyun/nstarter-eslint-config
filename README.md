@@ -250,7 +250,7 @@ npm test
 ```bash
 # 安装依赖
 npm i
-# 构建 index.js react.js 等 eslintrc 配置
+# 构建 eslintrc 配置
 npm run build
 # 执行测试
 npm test

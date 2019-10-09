@@ -21,7 +21,7 @@ declare const Prism: any;
 
 const pkg = require('../package.json');
 class Builder {
-    private namespace: RuleNamespaces = 'index';
+    private namespace: RuleNamespaces = 'node';
     private ruleList: Rule[] = [];
     private rulesContent = '';
     private namespaceEslintrcContent = '';
@@ -32,7 +32,7 @@ class Builder {
         this.rulesContent = this.getRulesContent();
         this.namespaceEslintrcContent = this.getNamespaceEslintrc();
         this.buildRulesJson();
-        if (this.namespace === 'index') {
+        if (this.namespace === 'node') {
             this.buildIndexEslintrc();
         } else {
             this.buildNamespaceEslintrc();
@@ -46,7 +46,7 @@ class Builder {
                 JSON.stringify(
                     this.ruleList.reduce(
                         (prev, rule) => {
-                            let newRule = { ...rule };
+                            const newRule = { ...rule };
                             delete newRule.comments;
                             prev[newRule.name] = newRule;
                             return prev;
@@ -68,7 +68,7 @@ class Builder {
             this.buildEslintrcMeta() +
             `module.exports={extends:['./base.js'],rules:{${this.rulesContent}}};`;
 
-        this.writeWithPrettier(path.resolve(__dirname, '../index.js'), eslintrcContent);
+        this.writeWithPrettier(path.resolve(__dirname, '../node.js'), eslintrcContent);
     }
 
     private buildNamespaceEslintrc() {
@@ -148,7 +148,7 @@ class Builder {
         const ruleName = Object.keys(fileModule.rules)[0];
         const fileContent = fs.readFileSync(filePath, 'utf-8');
         const comments = /\/\*\*.*\*\//gms.exec(fileContent);
-        let rule: Rule = {
+        const rule: Rule = {
             name: ruleName,
             value: fileModule.rules[ruleName],
             description: '',
@@ -226,9 +226,9 @@ class Builder {
     private insertMark(badExample: string, eslintMessages: Linter.LintMessage[]) {
         let insertedBadExample = badExample;
         eslintMessages.forEach(({ ruleId, message, line, column, endLine, endColumn }) => {
-            let insertLine = line - 1;
-            let insertColumn = column - 1;
-            let insertLineEnd = (endLine || line) - 1;
+            const insertLine = line - 1;
+            const insertColumn = column - 1;
+            const insertLineEnd = (endLine || line) - 1;
             let insertColumnEnd = (endColumn || column + 1) - 1;
             if (insertLineEnd === insertLine && insertColumnEnd === insertColumn) {
                 insertColumnEnd = insertColumnEnd + 1;
@@ -246,5 +246,5 @@ class Builder {
 }
 
 const builder = new Builder();
-builder.build('index');
+builder.build('node');
 builder.build('typescript');

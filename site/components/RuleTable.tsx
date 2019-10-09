@@ -14,12 +14,12 @@ const configMap: {
         [key: string]: Rule;
     }
 } = {
-    index: require('../config/index.json'),
+    node: require('../config/node.json'),
     typescript: require('../config/typescript.json')
 };
 
 const docsUrlMap: { [key in RuleNamespaces]: (rule: string) => string } = {
-    index: (rule) => `https://eslint.org/docs/rules/${rule}`,
+    node: (rule) => `https://eslint.org/docs/rules/${rule}`,
     typescript: (rule) =>
         `https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/${rule.replace(
             /.*\//,

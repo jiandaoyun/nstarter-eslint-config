@@ -4,7 +4,7 @@ import assert from 'assert';
 import eslint from 'eslint';
 
 const RULE_PREFIX_MAP = {
-    index: '',
+    node: '',
     typescript: '@typescript-eslint/'
 };
 
@@ -26,13 +26,11 @@ const badReport = cli.executeOnFiles(['./**/bad.js', './**/bad.ts']);
 const badWhitelist: string[] = [];
 
 badReport.results.forEach((badReportForOneFile) => {
-    const { errorCount, filePath, messages } = badReportForOneFile;
+    const { filePath, messages } = badReportForOneFile;
 
     const dirList = path.dirname(filePath).split(path.sep);
     const ruleName = dirList.pop();
     const rulePrefix = dirList.pop() as RulePrefix;
-
-    assert(errorCount > 0, `${filePath} should have at least one error`);
 
     messages.forEach((message) => {
         const fullRuleName = RULE_PREFIX_MAP[rulePrefix] + ruleName;

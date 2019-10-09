@@ -10,16 +10,16 @@ const prettier = require('eslint-config-prettier');
 const prettierTypeScript = require('eslint-config-prettier/@typescript-eslint');
 
 const prettierRules = {
-    index: prettier.rules,
+    node: prettier.rules,
     typescript: prettierTypeScript.rules
 };
 
 const RULE_PREFIX_MAP = {
-    index: '',
+    node: '',
     typescript: '@typescript-eslint/'
 };
 type RulePrefix = keyof typeof RULE_PREFIX_MAP;
-const namespaces: RulePrefix[] = ['index', 'typescript'];
+const namespaces: RulePrefix[] = ['node', 'typescript'];
 
 namespaces.forEach((namespace) => {
     fs.readdirSync(path.resolve(__dirname, '../test', namespace))

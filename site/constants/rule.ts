@@ -1,12 +1,12 @@
-export type RuleNamespaces = 'index' | 'typescript';
+export type RuleNamespaces = 'node' | 'typescript';
 
 export const RuleNamespaceExtensionMap = {
-    index: 'js',
+    node: 'js',
     typescript: 'ts'
 };
 
 export const RuleNamespacePrismLanguageMap = {
-    index: 'js',
+    node: 'js',
     typescript: 'ts'
 };
 

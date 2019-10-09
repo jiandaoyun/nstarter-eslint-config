@@ -8,8 +8,8 @@ import { RuleNamespaces } from '../constants/rule';
 import { RuleTable } from './RuleTable';
 
 export const App: React.SFC = () => {
-    const [namespace, updateNamespace] = useState<RuleNamespaces>('index');
-    const [shouldHideOff, toggleShouldHideOff] = useState(false);
+    const [namespace, updateNamespace] = useState<RuleNamespaces>('node');
+    const [shouldHideOff, toggleShouldHideOff] = useState(true);
 
     useEffect(() => {
         ReactTooltip.rebuild();
@@ -18,13 +18,13 @@ export const App: React.SFC = () => {
     const Header = (
         <div className="flex-center">
             <div className="container-fluid">
-                <h1>AlloyTeam ESLint 规则</h1>
+                <h1>NStarter ESLint 规则</h1>
                 <form className="top-gap site-form">
                     <select
                         value={namespace}
                         onChange={(e) => updateNamespace(e.target.value as RuleNamespaces)}
                     >
-                        <option value="index">标准规则</option>
+                        <option value="node">标准规则</option>
                         <option value="typescript">TypeScript</option>
                     </select>
                     <label>
