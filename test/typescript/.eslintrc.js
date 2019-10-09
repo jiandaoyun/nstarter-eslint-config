@@ -4,7 +4,6 @@ module.exports = {
     plugins: ['@typescript-eslint'],
     rules: {
         'no-magic-numbers': 'off',
-        'no-unused-vars': 'off',
-        'react/sort-comp': 'off'
+        'no-unused-vars': 'off'
     }
 };

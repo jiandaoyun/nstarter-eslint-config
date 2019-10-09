@@ -1,7 +1,7 @@
 {
-    "name": "eslint-config-alloy",
+    "name": "eslint-config-nstarter",
     "version": "3.0.0",
-    "description": "AlloyTeam ESLint 规则",
+    "description": "nstarter ESLint 规则",
     "main": "index.js",
     "scripts": {
         "start": "npm run dev",
@@ -15,39 +15,30 @@
         "build:html": "parcel build site/index.html --public-url ./",
         "test": "npm run lint && ts-node ./test/index.ts",
         "lint": "run-s eslint prettier",
-        "eslint": "eslint --ext .js,.jsx,.ts,.tsx,.vue --ignore-pattern \"bad.*\" .",
+        "eslint": "eslint --ext .js,.ts --ignore-pattern \"bad.*\" .",
         "prettier": "prettier -l \"./**/*\"",
         "prettier:fix": "prettier --write -l \"./**/*\""
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/AlloyTeam/eslint-config-alloy.git"
+        "url": "git+https://github.com/jiandaoyun/nstarter-eslint-config.git"
     },
     "keywords": [
         "eslint",
         "eslintrc",
         "eslintconfig",
         "config",
-        "alloy",
-        "alloyteam",
         "javascript",
         "styleguide",
-        "react",
-        "vue",
         "typescript"
     ],
-    "author": "xcatliu <xcatliu@gmail.com>",
-    "contributors": [
-        "heyli <lcxfs1991@gmail.com>",
-        "DiamondYuan <admin@diamondyuan.com>",
-        "Dash Chen <noreply@github.com>",
-        "Swan <noreply@github.com>"
-    ],
+    "author": "",
+    "contributors": [],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/AlloyTeam/eslint-config-alloy/issues"
+        "url": "https://github.com/jiandaoyun/nstarter-eslint-config/issues"
     },
-    "homepage": "https://alloyteam.github.io/eslint-config-alloy/",
+    "homepage": "https://github.com/jiandaoyun/nstarter-eslint-config",
     "publishConfig": {
         "access": "public"
     },
@@ -74,8 +65,6 @@
         "doctrine": "^3.0.0",
         "eslint": "^6.2.2",
         "eslint-config-prettier": "^6.1.0",
-        "eslint-plugin-react": "^7.14.2",
-        "eslint-plugin-vue": "^5.2.3",
         "husky": "^3.0.4",
         "insert-tag": "^0.1.2",
         "mobi-plugin-color": "^1.0.0",
@@ -90,13 +79,11 @@
         "rimraf": "^3.0.0",
         "ts-node": "^7.0.1",
         "typescript": "^3.6.2",
-        "vue-eslint-parser": "^5.0.0",
         "xml-escape": "^1.1.0"
     },
     "greenkeeper": {
         "ignore": [
-            "ts-node",
-            "vue-eslint-parser"
+            "ts-node"
         ]
     }
 }

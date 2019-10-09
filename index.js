@@ -1,20 +1,14 @@
 /**
- * AlloyTeam ESLint 规则
- * https://alloyteam.github.io/eslint-config-alloy/
+ * nstarter ESLint 规则
+ * https://github.com/jiandaoyun/nstarter-eslint-config
  *
  * 贡献者：
- *     xcatliu <xcatliu@gmail.com>
- *     heyli <lcxfs1991@gmail.com>
- *     DiamondYuan <admin@diamondyuan.com>
- *     Dash Chen <noreply@github.com>
- *     Swan <noreply@github.com>
+ *
+ *
  *
  * 依赖版本：
  *     eslint ^6.2.2
  *     babel-eslint ^10.0.1
- *     eslint-plugin-react ^7.14.2
- *     vue-eslint-parser ^5.0.0
- *     eslint-plugin-vue ^5.2.3
  *     @typescript-eslint/parser ^2.0.0
  *     @typescript-eslint/eslint-plugin ^2.0.0
  *

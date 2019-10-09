@@ -15,19 +15,11 @@ const configMap: {
     }
 } = {
     index: require('../config/index.json'),
-    react: require('../config/react.json'),
-    vue: require('../config/vue.json'),
     typescript: require('../config/typescript.json')
 };
 
 const docsUrlMap: { [key in RuleNamespaces]: (rule: string) => string } = {
     index: (rule) => `https://eslint.org/docs/rules/${rule}`,
-    react: (rule) =>
-        `https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/${rule.replace(
-            /.*\//,
-            ''
-        )}.md`,
-    vue: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
     typescript: (rule) =>
         `https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/${rule.replace(
             /.*\//,
@@ -54,12 +46,12 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                         key={name}
                         className={`flex-left flex-wrap top-gap-big units-gap site-row ${
                             value === 'off' ? 'site-row-off site-row-wide' : ''
-                        }`}
+                            }`}
                         style={
                             value === 'off' && shouldHideOff
                                 ? {
-                                      display: 'none'
-                                  }
+                                    display: 'none'
+                                }
                                 : {}
                         }
                     >
@@ -93,8 +85,8 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                                                 )}]`}</code>
                                             </pre>
                                         ) : (
-                                            <code>{`["error", ${JSON.stringify(value[1])}]`}</code>
-                                        )}
+                                                <code>{`["error", ${JSON.stringify(value[1])}]`}</code>
+                                            )}
                                     </p>
                                 </>
                             )}
@@ -104,7 +96,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                                 <pre
                                     className={`language-${
                                         RuleNamespacePrismLanguageMap[namespace]
-                                    } site-code`}
+                                        } site-code`}
                                 >
                                     <code
                                         dangerouslySetInnerHTML={{
@@ -119,7 +111,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                                 <pre
                                     className={`language-${
                                         RuleNamespacePrismLanguageMap[namespace]
-                                    }  site-code`}
+                                        }  site-code`}
                                 >
                                     <code
                                         dangerouslySetInnerHTML={{

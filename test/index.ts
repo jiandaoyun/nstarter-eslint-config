@@ -5,8 +5,6 @@ import eslint from 'eslint';
 
 const RULE_PREFIX_MAP = {
     index: '',
-    react: 'react/',
-    vue: 'vue/',
     typescript: '@typescript-eslint/'
 };
 
@@ -17,9 +15,7 @@ const cli = new CLIEngine({});
 
 const goodReport = cli.executeOnFiles([
     './**/good.js',
-    // './**/good.jsx',
-    './**/good.ts',
-    './**/good.vue'
+    './**/good.ts'
 ]);
 
 goodReport.results.forEach((goodReportForOneFile) => {
@@ -29,13 +25,11 @@ goodReport.results.forEach((goodReportForOneFile) => {
 
 const badReport = cli.executeOnFiles([
     './**/bad.js',
-    // './**/bad.jsx',
-    './**/bad.ts',
-    './**/bad.vue'
+    './**/bad.ts'
 ]);
 
 // 忽略这些规则的报错信息
-const badWhitelist = ['react/jsx-uses-react', 'react/jsx-uses-vars'];
+const badWhitelist: string[] = [];
 
 badReport.results.forEach((badReportForOneFile) => {
     const { errorCount, filePath, messages } = badReportForOneFile;

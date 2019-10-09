@@ -119,16 +119,13 @@ class Builder {
  *
  * 依赖版本：
  *     ${[
-     'eslint',
-     'babel-eslint',
-     'eslint-plugin-react',
-     'vue-eslint-parser',
-     'eslint-plugin-vue',
-     '@typescript-eslint/parser',
-     '@typescript-eslint/eslint-plugin'
- ]
-     .map((key) => `${key} ${pkg.devDependencies[key]}`)
-     .join('\n *     ')}
+                'eslint',
+                'babel-eslint',
+                '@typescript-eslint/parser',
+                '@typescript-eslint/eslint-plugin'
+            ]
+                .map((key) => `${key} ${pkg.devDependencies[key]}`)
+                .join('\n *     ')}
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  *
@@ -255,6 +252,4 @@ class Builder {
 
 const builder = new Builder();
 builder.build('index');
-builder.build('react');
-builder.build('vue');
 builder.build('typescript');

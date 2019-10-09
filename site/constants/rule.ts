@@ -1,16 +1,12 @@
-export type RuleNamespaces = 'index' | 'react' | 'vue' | 'typescript';
+export type RuleNamespaces = 'index' | 'typescript';
 
 export const RuleNamespaceExtensionMap = {
     index: 'js',
-    react: 'js',
-    vue: 'vue',
     typescript: 'ts'
 };
 
 export const RuleNamespacePrismLanguageMap = {
     index: 'js',
-    react: 'jsx',
-    vue: 'html',
     typescript: 'ts'
 };
 

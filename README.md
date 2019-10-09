@@ -1,43 +1,19 @@
-# [AlloyTeam ESLint 规则](https://alloyteam.github.io/eslint-config-alloy/)
+# [Nstarter ESLint 规则](https://alloyteam.github.io/eslint-config-alloy/)
 
 [![Build Status](https://img.shields.io/travis/AlloyTeam/eslint-config-alloy.svg)](https://travis-ci.org/AlloyTeam/eslint-config-alloy) [![npm package](https://img.shields.io/npm/v/eslint-config-alloy.svg)](https://www.npmjs.org/package/eslint-config-alloy) [![npm downloads](http://img.shields.io/npm/dm/eslint-config-alloy.svg)](https://www.npmjs.org/package/eslint-config-alloy) [![Greenkeeper badge](https://badges.greenkeeper.io/AlloyTeam/eslint-config-alloy.svg)](https://greenkeeper.io/)
 
 AlloyTeam ESLint 规则不仅是一套科学的 ESLint 配置规范，而且也是你配置个性化 ESLint 规则的最佳参考。
-
-此为 v3 版本，如需历史版本，请[点击这里](https://github.com/AlloyTeam/eslint-config-alloy/releases)。
-
-## 升级到 v3
-
-- v3 版本去掉了所有样式相关的规则（比如缩进、分号等），这些规则应该交给更专业的 [Prettier](https://prettier.io/) 来处理
-- v3 版本需要组合使用各规则，比如 react 需要配置 `extends: ['alloy', 'alloy/react']`：
-
-```diff
- module.exports = {
-     extends: [
--        'eslint-config-alloy/react',
-+        'alloy',
-+        'alloy/react',
-     ],
-     globals: {
-```
 
 ## 规则列表
 
 | 名称 | 包含规则 | 解析器 |
 | --- | --- | --- |
 | [标准规则](#标准规则) | [ESLint 规则][] | [babel-eslint][] |
-| [React](#react) | ESLint 规则、[eslint-plugin-react][] | babel-eslint |
-| [Vue](#vue) | ESLint 规则、[eslint-plugin-vue][] | [vue-eslint-parser][] |
 | [TypeScript](#typescript) | ESLint 规则、[@typescript-eslint][] |[@typescript-eslint/parser][] |
-| [TypeScript React](#typescript-react) | ESLint 规则、@typescript-eslint、eslint-plugin-react | @typescript-eslint/parser |
-| TypeScript Vue（开发中） | | |
 
 [babel-eslint]: https://github.com/babel/babel-eslint
-[vue-eslint-parser]: https://github.com/mysticatea/vue-eslint-parser
 [@typescript-eslint/parser]: https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser
 [ESLint 规则]: https://eslint.org/docs/rules/
-[eslint-plugin-react]: https://github.com/yannickcr/eslint-plugin-react
-[eslint-plugin-vue]: https://eslint.vuejs.org/rules/
 [@typescript-eslint]: https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules
 
 ## 配置原则
@@ -74,84 +50,6 @@ npm install --save-dev eslint babel-eslint eslint-config-alloy
 module.exports = {
     extends: [
         'alloy',
-    ],
-    env: {
-        // 这里填入你的项目用到的环境
-        // 它们预定义了不同环境的全局变量，比如：
-        //
-        // browser: true,
-        // node: true,
-        // mocha: true,
-        // jest: true,
-        // jquery: true
-    },
-    globals: {
-        // 这里填入你的项目需要的全局变量
-        // false 表示这个全局变量不允许被重新赋值，比如：
-        //
-        // myGlobal: false
-    },
-    rules: {
-        // 这里填入你的项目需要的个性化配置
-    }
-};
-```
-
-### React
-
-安装：
-
-```bash
-npm install --save-dev eslint babel-eslint eslint-plugin-react eslint-config-alloy
-```
-
-在你的项目根目录下创建 `.eslintrc.js`，并将以下内容复制到文件中：
-
-```js
-module.exports = {
-    extends: [
-        'alloy',
-        'alloy/react',
-    ],
-    env: {
-        // 这里填入你的项目用到的环境
-        // 它们预定义了不同环境的全局变量，比如：
-        //
-        // browser: true,
-        // node: true,
-        // mocha: true,
-        // jest: true,
-        // jquery: true
-    },
-    globals: {
-        // 这里填入你的项目需要的全局变量
-        // false 表示这个全局变量不允许被重新赋值，比如：
-        //
-        // myGlobal: false
-    },
-    rules: {
-        // 这里填入你的项目需要的个性化配置
-    }
-};
-```
-
-### Vue
-
-安装：
-
-```bash
-npm install --save-dev eslint babel-eslint vue-eslint-parser@5.0.0 eslint-plugin-vue eslint-config-alloy
-```
-
-注意：由于[这个原因](https://github.com/mysticatea/vue-eslint-parser/issues/46)，不能使用最新版的 vue-eslint-parser，必须使用 5.0.0 版本。
-
-在你的项目根目录下创建 `.eslintrc.js`，并将以下内容复制到文件中：
-
-```js
-module.exports = {
-    extends: [
-        'alloy',
-        'alloy/vue',
     ],
     env: {
         // 这里填入你的项目用到的环境
@@ -227,7 +125,6 @@ npm install --save-dev eslint typescript @typescript-eslint/parser @typescript-e
 module.exports = {
     extends: [
         'alloy',
-        'alloy/react',
         'alloy/typescript',
     ],
     env: {
@@ -256,40 +153,28 @@ module.exports = {
 
 ### 在 VSCode 中使用
 
-在 VSCode 中，默认 ESLint 并不能识别 `.vue`、`.ts` 或 `.tsx` 文件，需要在「文件 => 首选项 => 设置」里做如下配置：
+在 VSCode 中，默认 ESLint 并不能识别 `.ts` 文件，需要在「文件 => 首选项 => 设置」里做如下配置：
 
 ```json
 {
     "eslint.validate": [
         "javascript",
-        "javascriptreact",
-        "vue",
-        "typescript",
-        "typescriptreact"
+        "typescript"
     ]
 }
 ```
 
 ### VSCode 中的 autoFixOnSave 没有效果
 
-如果需要针对 `.vue`、`.ts` 和 `.tsx` 文件开启 ESLint 的 autoFix，则需要配置成：
+如果需要针对 `.ts` 文件开启 ESLint 的 autoFix，则需要配置成：
 
 ```json
 {
     "eslint.autoFixOnSave": true,
     "eslint.validate": [
         "javascript",
-        "javascriptreact",
-        {
-            "language": "vue",
-            "autoFix": true
-        },
         {
             "language": "typescript",
-            "autoFix": true
-        },
-        {
-            "language": "typescriptreact",
             "autoFix": true
         }
     ]
@@ -378,23 +263,6 @@ npm version <major|minor|patch>
 git push --follow-tags
 npm publish
 ```
-
-### TODOs
-
-如果对此项目感兴趣，欢迎从完成 test 下的示例开始入手，参与贡献！
-
-- [ ] 完成所有的 test/index 下的示例
-- [ ] 完成所有的 test/react 下的示例
-- [x] 完成所有的 test/typescript 下的示例
-- [x] 移植 bak/vue 的规则，完成 eslint-config-alloy/vue 的配置
-- [x] 实现 TypeScript React 配置
-- [ ] 实现 TypeScript Vue 配置
-- [x] 更新至新版 eslint 规则
-- [x] 更新至新版 react 规则
-- [x] 更新至新版 vue 规则
-- [x] 更新至新版 typescript 规则
-- [x] 添加 Greenkeeper 以保证依赖能够及时更新
-- [ ] 完成新版网站建设
 
 ## 参考
 

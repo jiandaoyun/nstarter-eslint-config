@@ -5,7 +5,6 @@ import ReactTooltip = require('react-tooltip');
 const { useState, useEffect } = React;
 
 import { RuleNamespaces } from '../constants/rule';
-import { GitHubCorner } from './GitHubCorner';
 import { RuleTable } from './RuleTable';
 
 export const App: React.SFC = () => {
@@ -26,8 +25,6 @@ export const App: React.SFC = () => {
                         onChange={(e) => updateNamespace(e.target.value as RuleNamespaces)}
                     >
                         <option value="index">标准规则</option>
-                        <option value="react">React</option>
-                        <option value="vue">Vue</option>
                         <option value="typescript">TypeScript</option>
                     </select>
                     <label>
@@ -45,7 +42,6 @@ export const App: React.SFC = () => {
 
     return (
         <>
-            <GitHubCorner href="https://github.com/AlloyTeam/eslint-config-alloy" />
             {Header}
             <RuleTable namespace={namespace} shouldHideOff={shouldHideOff} />
             <ReactTooltip
