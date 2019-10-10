@@ -1,4 +1,4 @@
-# [NStarter ESLint 规则](https://alloyteam.github.io/eslint-config-alloy/)
+# [NStarter ESLint 规则](https://github.com/jiandaoyun/nstarter-eslint-config)
 
 [![Build Status](https://img.shields.io/travis/jiandaoyun/nstarter-eslint-config.svg)](https://travis-ci.org/jiandaoyun/nstarter-eslint-config) [![npm package](https://img.shields.io/npm/v/eslint-config-nstarter.svg)](https://www.npmjs.org/package/eslint-config-nstarter) [![npm downloads](http://img.shields.io/npm/dm/eslint-config-nstarter.svg)](https://www.npmjs.org/package/eslint-config-nstarter) [!
 
