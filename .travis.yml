@@ -8,8 +8,7 @@ branches:
 install:
     - npm ci
 script:
-    - npm run build:site
-    - npm run build:eslintrc
+    - npm run build
     - npm test
 deploy:
     provider: pages

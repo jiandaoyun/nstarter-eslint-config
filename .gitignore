@@ -10,7 +10,7 @@ node_modules
 .cache
 dist
 
-site/config
+site/config/*.json
 
 node.js
 typescript.js
