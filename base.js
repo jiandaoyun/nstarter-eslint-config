@@ -17,10 +17,16 @@ module.exports = {
         allowImportExportEverywhere: false
     },
     env: {
-        browser: true,
+        browser: false,
         node: true,
-        commonjs: true,
         es6: true
+    },
+    globals: {
+        console: false,
+        exports: false,
+        module: false,
+        require: false,
+        process: false
     },
     // 以当前目录为根目录，不再向上查找 .eslintrc.js
     root: true

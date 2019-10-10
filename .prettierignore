@@ -13,11 +13,8 @@ package-lock.json
 
 ## Local
 site/vendor
-test/index/no-cond-assign/bad.js
-test/index/no-irregular-whitespace/bad.js
-test/index/no-labels/bad.js
-test/index/no-sequences/bad.js
-test/index/no-useless-rename/bad.js
+test/**/**/bad.*
+test/**/**/good.*
 
 ## Built-files
 .cache

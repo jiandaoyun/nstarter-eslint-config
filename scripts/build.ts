@@ -32,11 +32,7 @@ class Builder {
         this.rulesContent = this.getRulesContent();
         this.namespaceEslintrcContent = this.getNamespaceEslintrc();
         this.buildRulesJson();
-        if (this.namespace === 'node') {
-            this.buildIndexEslintrc();
-        } else {
-            this.buildNamespaceEslintrc();
-        }
+        this.buildNamespaceEslintrc();
     }
 
     private buildRulesJson() {
@@ -61,14 +57,6 @@ class Builder {
             ),
             'utf-8'
         );
-    }
-
-    private buildIndexEslintrc() {
-        const eslintrcContent =
-            this.buildEslintrcMeta() +
-            `module.exports={extends:['./base.js'],rules:{${this.rulesContent}}};`;
-
-        this.writeWithPrettier(path.resolve(__dirname, '../node.js'), eslintrcContent);
     }
 
     private buildNamespaceEslintrc() {
@@ -113,12 +101,14 @@ class Builder {
  * ${pkg.description}
  * ${pkg.homepage}
  *
- * 贡献者：
- *     ${pkg.author}
- *     ${pkg.contributors.join('\n *     ')}
- *
  * 依赖版本：
- *     ${['eslint', 'babel-eslint', '@typescript-eslint/parser', '@typescript-eslint/eslint-plugin']
+ *     ${[
+     'eslint',
+     'babel-eslint',
+     'eslint-plugin-import',
+     '@typescript-eslint/parser',
+     '@typescript-eslint/eslint-plugin'
+ ]
      .map((key) => `${key} ${pkg.devDependencies[key]}`)
      .join('\n *     ')}
  *
