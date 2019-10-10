@@ -48,7 +48,12 @@
             "pre-push": "npm test"
         }
     },
-    "dependencies": {},
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^2.0.0",
+        "@typescript-eslint/parser": "^2.0.0",
+        "babel-eslint": "^10.0.1",
+        "eslint-plugin-import": "^2.18.2"
+    },
     "devDependencies": {
         "@types/doctrine": "0.0.3",
         "@types/eslint": "^6.1.2",
@@ -59,13 +64,9 @@
         "@types/react-tooltip": "^3.9.3",
         "@types/rimraf": "^2.0.2",
         "@types/xml-escape": "^1.1.0",
-        "@typescript-eslint/eslint-plugin": "^2.0.0",
-        "@typescript-eslint/parser": "^2.0.0",
-        "babel-eslint": "^10.0.1",
         "doctrine": "^3.0.0",
         "eslint": "^6.2.2",
         "eslint-config-prettier": "^6.1.0",
-        "eslint-plugin-import": "^2.18.2",
         "husky": "^3.0.4",
         "insert-tag": "^0.1.2",
         "mobi-plugin-color": "^1.0.0",
