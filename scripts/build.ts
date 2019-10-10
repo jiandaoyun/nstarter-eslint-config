@@ -32,7 +32,11 @@ class Builder {
         this.rulesContent = this.getRulesContent();
         this.namespaceEslintrcContent = this.getNamespaceEslintrc();
         this.buildRulesJson();
-        this.buildNamespaceEslintrc();
+        if (this.namespace === 'node') {
+            this.buildIndexEslintrc();
+        } else {
+            this.buildNamespaceEslintrc();
+        }
     }
 
     private buildRulesJson() {
@@ -57,6 +61,18 @@ class Builder {
             ),
             'utf-8'
         );
+    }
+
+    private buildIndexEslintrc() {
+        const eslintrcContent =
+            this.buildEslintrcMeta() +
+            this.namespaceEslintrcContent
+                .replace(/extends:.*],/, "extends: ['./base.js'], ")
+                .replace(/(,\s*rules: {([\s\S]*?)})?\s*};/, (_match, _p1, p2) => {
+                    const rules = p2 ? `${p2},${this.rulesContent}` : this.rulesContent;
+                    return `,rules:{${rules}}};`;
+                });
+        this.writeWithPrettier(path.resolve(__dirname, '../node.js'), eslintrcContent);
     }
 
     private buildNamespaceEslintrc() {

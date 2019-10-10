@@ -126,6 +126,15 @@
         "goodExample": "",
         "reason": "当需要写一系列属性的时候，可以更统一"
     },
+    "eol-last": {
+        "name": "eol-last",
+        "value": ["warn", "always"],
+        "description": "文件最后一行必须有一个空行",
+        "category": "",
+        "badExample": "",
+        "goodExample": "",
+        "reason": "部分系统下的兼容性直到规范"
+    },
     "eqeqeq": {
         "name": "eqeqeq",
         "value": ["error", "always"],
@@ -223,24 +232,6 @@
         "badExample": "",
         "goodExample": ""
     },
-    "import/no-default-export": {
-        "name": "import/no-default-export",
-        "value": "error",
-        "description": "禁止使用默认导出模块。",
-        "category": "",
-        "badExample": "<span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>\n\n<mark class=\"eslint-error\" data-tip=\"Prefer named exports.&lt;br/&gt;&lt;span class=&apos;eslint-error-rule-id&apos;&gt;eslint(import/no-default-export)&lt;/span&gt;\"><span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> Foo<span class=\"token punctuation\">;</span></mark>",
-        "goodExample": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>",
-        "reason": "默认导出会允许被引用时重命名，不便于重构与统一目标对象理解。\n不过对于 npm 模块的最外层封装，建议使用默认导出。"
-    },
-    "import/no-unused-modules": {
-        "name": "import/no-unused-modules",
-        "value": "error",
-        "description": "禁止保留未使用的模块依赖",
-        "category": "",
-        "badExample": "",
-        "goodExample": "",
-        "reason": "避免产生循环依赖的问题。"
-    },
     "init-declarations": {
         "name": "init-declarations",
         "value": "off",
@@ -256,6 +247,15 @@
         "category": "",
         "badExample": "",
         "goodExample": ""
+    },
+    "linebreak-style": {
+        "name": "linebreak-style",
+        "value": ["error", "unix"],
+        "description": "要求统一使用 unix 风格的换行符",
+        "category": "",
+        "badExample": "",
+        "goodExample": "",
+        "reason": "避免部分多行模板字符串在输出时产生连续换行问题"
     },
     "lines-between-class-members": {
         "name": "lines-between-class-members",
@@ -488,6 +488,15 @@
         "category": "",
         "badExample": "<span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span>foo<span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n    <mark class=\"eslint-error\" data-tip=\"Unexpected &apos;debugger&apos; statement.&lt;br/&gt;&lt;span class=&apos;eslint-error-rule-id&apos;&gt;eslint(no-debugger)&lt;/span&gt;\"><span class=\"token keyword\">debugger</span><span class=\"token punctuation\">;</span></mark>\n<span class=\"token punctuation\">}</span>",
         "goodExample": "<span class=\"token keyword\">if</span> <span class=\"token punctuation\">(</span>foo<span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token comment\">// debugger;</span>\n<span class=\"token punctuation\">}</span>"
+    },
+    "import/no-default-export": {
+        "name": "import/no-default-export",
+        "value": "error",
+        "description": "禁止使用默认导出模块。",
+        "category": "",
+        "badExample": "<span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>\n\n<mark class=\"eslint-error\" data-tip=\"Prefer named exports.&lt;br/&gt;&lt;span class=&apos;eslint-error-rule-id&apos;&gt;eslint(import/no-default-export)&lt;/span&gt;\"><span class=\"token keyword\">export</span> <span class=\"token keyword\">default</span> Foo<span class=\"token punctuation\">;</span></mark>",
+        "goodExample": "<span class=\"token keyword\">export</span> <span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>",
+        "reason": "默认导出会允许被引用时重命名，不便于重构与统一目标对象理解。\n不过对于 npm 模块的最外层封装，建议使用默认导出。"
     },
     "no-delete-var": {
         "name": "no-delete-var",
@@ -1255,6 +1264,15 @@
         "badExample": "",
         "goodExample": "",
         "reason": "已经禁止使用 label 了"
+    },
+    "import/no-unused-modules": {
+        "name": "import/no-unused-modules",
+        "value": "error",
+        "description": "禁止保留未使用的模块依赖",
+        "category": "",
+        "badExample": "",
+        "goodExample": "",
+        "reason": "避免产生循环依赖的问题。"
     },
     "no-unused-vars": {
         "name": "no-unused-vars",

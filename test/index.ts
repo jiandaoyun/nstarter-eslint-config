@@ -23,7 +23,7 @@ goodReport.results.forEach((goodReportForOneFile) => {
 const badReport = cli.executeOnFiles(['./**/bad.js', './**/bad.ts']);
 
 // 忽略这些规则的报错信息
-const badWhitelist: string[] = [];
+const badWhitelist: string[] = ['import-no-default-export', 'import-no-unused-modules'];
 
 badReport.results.forEach((badReportForOneFile) => {
     const { filePath, messages } = badReportForOneFile;
