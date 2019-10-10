@@ -8,8 +8,8 @@ branches:
 install:
     - npm ci
 script:
-    - npm test
     - npm run build
+    - npm test
 deploy:
     provider: pages
     skip-cleanup: true
