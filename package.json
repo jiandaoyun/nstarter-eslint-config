@@ -1,6 +1,6 @@
 {
     "name": "eslint-config-nstarter",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "nstarter ESLint 规则",
     "main": "nodes.js",
     "scripts": {
