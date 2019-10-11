@@ -9,10 +9,8 @@ module.exports = {
             'error',
             'always',
             {
-                block: {
-                    exceptions: ['#alt', '#endalt'],
-                    markers: ['#', '#module', '#endmodule']
-                }
+                exceptions: ['#alt', '#endalt'],
+                markers: ['#', '#module', '#endmodule']
             }
         ]
     }
