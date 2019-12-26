@@ -21,3 +21,5 @@ prettier.config.js
 nodemon.json
 
 tsconfig.json
+
+.idea/
