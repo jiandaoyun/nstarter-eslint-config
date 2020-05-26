@@ -23,3 +23,5 @@ nodemon.json
 tsconfig.json
 
 .idea/
+
+jenkinsfile.gvy
