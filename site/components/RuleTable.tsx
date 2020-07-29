@@ -12,7 +12,7 @@ interface RuleTableProps {
 const configMap: {
     [key in RuleNamespaces]: {
         [key: string]: Rule;
-    }
+    };
 } = {
     node: require('../config/node.json'),
     typescript: require('../config/typescript.json')
@@ -94,9 +94,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                         <div className="unit-1-3 unit-1-on-mobile">
                             {badExample && (
                                 <pre
-                                    className={`language-${
-                                        RuleNamespacePrismLanguageMap[namespace]
-                                    } site-code`}
+                                    className={`language-${RuleNamespacePrismLanguageMap[namespace]} site-code`}
                                 >
                                     <code
                                         dangerouslySetInnerHTML={{
@@ -109,9 +107,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                         <div className="unit-1-3 unit-1-on-mobile">
                             {goodExample && (
                                 <pre
-                                    className={`language-${
-                                        RuleNamespacePrismLanguageMap[namespace]
-                                    }  site-code`}
+                                    className={`language-${RuleNamespacePrismLanguageMap[namespace]}  site-code`}
                                 >
                                     <code
                                         dangerouslySetInnerHTML={{
