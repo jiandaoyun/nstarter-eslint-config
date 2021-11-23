@@ -203,7 +203,7 @@ class Builder {
 
   /** 写入 config/locale/*.json */
   private buildLocaleJson() {
-    const current: any = locale['en-US'];
+    const current: any = locale['zh-CN'];
 
     Object.values(this.ruleList).forEach((rule) => {
       if (!current[rule.description]) {

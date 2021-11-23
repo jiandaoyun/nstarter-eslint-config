@@ -3,7 +3,7 @@ class Foo2 {
   public static getFoo() {
     return Foo2.foo;
   }
-  public constructor() {}
+  constructor() {}
   protected bar = 'bar';
   public getBar() {}
   public get baz() {

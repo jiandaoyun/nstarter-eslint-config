@@ -28,8 +28,7 @@ async function main() {
   ]);
 
   // 忽略这些规则的报错信息
-  const badWhitelist = [
-  ];
+  const badWhitelist = [];
 
   badResults.forEach((badReportForOneFile) => {
     const { errorCount, filePath, messages } = badReportForOneFile;

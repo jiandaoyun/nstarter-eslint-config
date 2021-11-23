@@ -3,6 +3,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   rules: {
-    'react/sort-comp': 'off',
+    'no-magic-numbers': 'off',
+    'no-unused-vars': 'off',
   },
 };
