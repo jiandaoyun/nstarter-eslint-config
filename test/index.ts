@@ -29,11 +29,6 @@ async function main() {
 
   // 忽略这些规则的报错信息
   const badWhitelist = [
-    'react/jsx-uses-react',
-    'react/jsx-uses-vars',
-    'vue/jsx-uses-vars',
-    'vue/experimental-script-setup-vars',
-    'vue/script-setup-uses-vars',
   ];
 
   badResults.forEach((badReportForOneFile) => {

@@ -16,23 +16,6 @@ export const NAMESPACE_CONFIG = {
     /** 插件的名称 */
     pluginName: undefined,
   },
-  react: {
-    exampleExtension: 'js',
-    prismLanguage: 'jsx',
-    rulePrefix: 'react/',
-    ruleConfig: require('./rules/react.json'),
-    getDocsUrl: (rule: string) =>
-      `https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/${rule.replace(/.*\//, '')}.md`,
-    pluginName: 'eslint-plugin-react',
-  },
-  vue: {
-    exampleExtension: 'vue',
-    prismLanguage: 'html',
-    rulePrefix: 'vue/',
-    ruleConfig: require('./rules/vue.json'),
-    getDocsUrl: (rule: string) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
-    pluginName: 'eslint-plugin-vue',
-  },
   typescript: {
     exampleExtension: 'ts',
     prismLanguage: 'ts',
@@ -56,10 +39,6 @@ export function buildEslintrcMeta() {
 /**
  * ${pkg.description}
  * ${pkg.homepage}
- *
- * 贡献者：
- *   ${pkg.author}
- *   ${pkg.contributors.join('\n *   ')}
  *
  * 依赖版本：
  *   ${[
