@@ -10,6 +10,9 @@ node_modules/
 scripts/
 site/
 test/
+config/
+
+webpack.config.js
 
 .eslintignore
 .eslintrc.js
