@@ -36,8 +36,6 @@
     "alloyteam",
     "javascript",
     "styleguide",
-    "react",
-    "vue",
     "typescript"
   ],
   "license": "MIT",
@@ -69,8 +67,8 @@
     "doctrine": "^3.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-vue": "^7.19.1",
     "html-webpack-plugin": "^5.3.2",
     "husky": "^7.0.2",
     "insert-tag": "^0.1.2",

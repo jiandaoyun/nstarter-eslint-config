@@ -1,5 +1,6 @@
 module.exports = {
   parser: '@babel/eslint-parser',
+  extends: ['plugin:import/warnings'],
   parserOptions: {
     ecmaVersion: 2019,
     // ECMAScript modules 模式

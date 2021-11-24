@@ -4,13 +4,13 @@ interface ITest1 {
 }
 
 type TTest2 = {
-  foo: string;
-  bar: string;
+  foo: string,
+  bar: string
 };
 
-type TTest3 = { foo: string; bar: string };
+type TTest3 = { foo: string, bar: string };
 
 const test4: {
-  x: string;
-  y: string;
+  x: string,
+  y: string
 };

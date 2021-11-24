@@ -1,1 +1,1 @@
-foo = doSomething(), 1;
+(foo = doSomething()), 1;

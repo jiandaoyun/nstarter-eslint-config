@@ -8,27 +8,27 @@ const eslintInstance = new ESLint({});
 
 main();
 async function main() {
-  const goodResults = await eslintInstance.lintFiles([
-    './**/good.js',
-    // './**/good.jsx',
-    './**/good.ts',
-    './**/good.vue',
-  ]);
+  const goodResults = await eslintInstance.lintFiles(['./**/good.js', './**/good.ts']);
 
   goodResults.forEach((goodReportForOneFile) => {
     const { errorCount, filePath } = goodReportForOneFile;
     assert.strictEqual(errorCount, 0, `${filePath} should have no error`);
   });
 
-  const badResults = await eslintInstance.lintFiles([
-    './**/bad.js',
-    // './**/bad.jsx',
-    './**/bad.ts',
-    './**/bad.vue',
-  ]);
+  const badResults = await eslintInstance.lintFiles(['./**/bad.js', './**/bad.ts']);
 
   // 忽略这些规则的报错信息
-  const badWhitelist = [];
+  const badWhitelist: string[] = [
+    'import-no-default-export',
+    'max-lines-per-function',
+    'no-duplicate-imports',
+    'template-curly-spacing',
+    'yoda',
+    '@typescript-eslint/member-ordering',
+    '@typescript-eslint/no-duplicate-imports',
+    '@typescript-eslint/no-empty-interface',
+    '@typescript-eslint/prefer-function-type',
+  ];
 
   badResults.forEach((badReportForOneFile) => {
     const { errorCount, filePath, messages } = badReportForOneFile;
@@ -37,13 +37,13 @@ async function main() {
     const ruleName = dirList.pop();
     const namespace = dirList.pop() as Namespace;
 
+    const fullRuleName = NAMESPACE_CONFIG[namespace].rulePrefix + ruleName;
+    if (badWhitelist.includes(fullRuleName)) {
+      return;
+    }
     assert(errorCount > 0, `${filePath} should have at least one error`);
 
     messages.forEach((message) => {
-      const fullRuleName = NAMESPACE_CONFIG[namespace].rulePrefix + ruleName;
-      if (badWhitelist.includes(fullRuleName)) {
-        return;
-      }
       if (message.ruleId !== fullRuleName) {
         assert.strictEqual(
           message.ruleId,

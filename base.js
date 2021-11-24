@@ -17,8 +17,6 @@
  *   @babel/eslint-parser ^7.15.8
  *   @babel/preset-react ^7.14.5
  *   eslint-plugin-react ^7.26.1
- *   vue-eslint-parser ^7.11.0
- *   eslint-plugin-vue ^7.19.1
  *   @typescript-eslint/parser ^5.0.0
  *   @typescript-eslint/eslint-plugin ^5.0.0
  *

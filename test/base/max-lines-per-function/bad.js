@@ -1,0 +1,54 @@
+function foo() {
+  // a comment followed by a blank line
+
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+  var x = 0;
+}

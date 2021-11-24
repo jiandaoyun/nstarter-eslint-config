@@ -9,6 +9,7 @@ module.exports = {
       'error',
       {
         types: {
+          '{}': false,
           Object: {
             message: "Use '{}' instead",
             fixWith: '{}',
