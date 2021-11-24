@@ -1,24 +1,11 @@
 /**
- * AlloyTeam ESLint 规则
- * https://alloyteam.github.io/eslint-config-alloy/
- *
- * 贡献者：
- *   xcatliu <xcatliu@gmail.com>
- *   heyli <lcxfs1991@gmail.com>
- *   Swan <noreply@github.com>
- *   DiamondYuan <admin@diamondyuan.com>
- *   Dash Chen <noreply@github.com>
- *   lzw <mingxin2014@gmail.com>
- *   ryoliu <sfesh@163.com>
- *   sunhui04 <sunhui04@meituan.com>
+ * nstarter ESLint 规则
+ * https://jiandaoyun.github.io/nstarter-eslint-config/
  *
  * 依赖版本：
  *   eslint ^7.32.0
+ *   eslint-plugin-import ^2.25.3
  *   @babel/eslint-parser ^7.15.8
- *   @babel/preset-react ^7.14.5
- *   eslint-plugin-react ^7.26.1
- *   vue-eslint-parser ^7.11.0
- *   eslint-plugin-vue ^7.19.1
  *   @typescript-eslint/parser ^5.0.0
  *   @typescript-eslint/eslint-plugin ^5.0.0
  *
@@ -28,8 +15,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   rules: {
-    'react/sort-comp': 'off',
-
     /**
      * 重载的函数必须写在一起
      * @reason 增加可读性
@@ -50,13 +35,48 @@ module.exports = {
      */
     '@typescript-eslint/ban-ts-comment': 'off',
     /**
+     * 是否允许使用 // @ts-ignore 来忽略编译错误
+     * @reason 既然已经使用注释来忽略编译错误了，说明已经清楚可能带来的后果
+     */
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    /**
      * 禁止使用类似 tslint:disable-next-line 这样的注释
      */
     '@typescript-eslint/ban-tslint-comment': 'off',
     /**
      * 禁止使用指定的类型
+     * 不使用 Object, String, Number, Boolean 类型，而使用原生的 ts 类型
+     * @reason 统一代码风格
      */
-    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          '{}': false,
+          Object: {
+            message: "Use '{}' instead",
+            fixWith: '{}',
+          },
+          String: {
+            message: "Use 'string' instead",
+            fixWith: 'string',
+          },
+          Number: {
+            message: "Use 'number' instead",
+            fixWith: 'number',
+          },
+          Boolean: {
+            message: "Use 'boolean' instead",
+            fixWith: 'boolean',
+          },
+        },
+      },
+    ],
+    /**
+     * 变量名必须是 camelcase 风格的
+     * @reason 很多 api 或文件名都不是 camelcase 风格的
+     */
+    '@typescript-eslint/camelcase': 'off',
     /**
      * 类的只读属性若是一个字面量，则必须使用只读属性而不是 getter
      */
@@ -98,23 +118,46 @@ module.exports = {
     '@typescript-eslint/dot-notation': 'off',
     /**
      * 函数返回值必须与声明的类型一致
-     * @reason 返回值类型可以推导出来
+     * @reason 编译阶段检查就足够了
      */
     '@typescript-eslint/explicit-function-return-type': 'off',
     /**
      * 必须设置类的成员的可访问性
+     * 特殊规则，对于 constructor，不要求指定其 public 状态。
      * @reason 将不需要公开的成员设为私有的，可以增强代码的可理解性，对文档输出也很友好
      */
-    '@typescript-eslint/explicit-member-accessibility': 'error',
+    '@typescript-eslint/explicit-member-accessibility': [
+      'error',
+      {
+        accessibility: 'explicit',
+        overrides: {
+          constructors: 'no-public',
+        },
+      },
+    ],
     /**
      * 导出的函数或类中的 public 方法必须定义输入输出参数的类型
      */
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     /**
+     * 约束泛型的命名规则
+     */
+    '@typescript-eslint/generic-type-naming': 'off',
+    /**
+     * 缩进规定为 4 空格
+     * @reason 已被 javascript 规则覆盖，无需重复指定。
+     */
+    indent: 'off',
+    '@typescript-eslint/indent': 'off',
+    /**
      * 变量必须在定义的时候赋值
      */
     'init-declarations': 'off',
     '@typescript-eslint/init-declarations': 'off',
+    /**
+     * 接口名称必须以 I 开头
+     */
+    '@typescript-eslint/interface-name-prefix': 'off',
     /**
      * 类的成员之间是否需要空行
      * @reason 有时为了紧凑需要挨在一起，有时为了可读性需要空一行
@@ -122,41 +165,60 @@ module.exports = {
     'lines-between-class-members': 'off',
     '@typescript-eslint/lines-between-class-members': 'off',
     /**
-     * 指定类成员的排序规则
+     * 统一成员属性的分隔符形式
+     * 对于对象或 Interface 声明，使用 ;。对于 type 声明使用 ,。
+     * @reason 统一代码风格
+     */
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      {
+        multiline: {
+          delimiter: 'semi',
+          requireLast: true,
+        },
+        singleline: {
+          delimiter: 'semi',
+          requireLast: false,
+        },
+        overrides: {
+          typeLiteral: {
+            multiline: {
+              delimiter: 'comma',
+              requireLast: false,
+            },
+            singleline: {
+              delimiter: 'comma',
+              requireLast: false,
+            },
+          },
+        },
+      },
+    ],
+    /**
+     * 私有成员必须以 _ 开头
+     * @reason 已有 private 修饰符了，没必要限制变量名
+     */
+    '@typescript-eslint/member-naming': 'off',
+    /**
+     * 成员属性定义过程的指导性顺序约束
+     * 不做强制性要求
      * @reason 优先级：
      * 1. static > instance
      * 2. field > constructor > method
      * 3. public > protected > private
      */
     '@typescript-eslint/member-ordering': [
-      'error',
+      'warn',
       {
         default: [
-          'public-static-field',
-          'protected-static-field',
-          'private-static-field',
           'static-field',
-          'public-static-method',
-          'protected-static-method',
-          'private-static-method',
-          'static-method',
-          'public-instance-field',
-          'protected-instance-field',
-          'private-instance-field',
-          'public-field',
-          'protected-field',
-          'private-field',
           'instance-field',
-          'field',
-          'constructor',
-          'public-instance-method',
-          'protected-instance-method',
-          'private-instance-method',
-          'public-method',
-          'protected-method',
-          'private-method',
-          'instance-method',
-          'method',
+          'public-constructor',
+          'protected-constructor',
+          'private-constructor',
+          'private-static-method',
+          'protected-static-method',
+          'public-static-method',
         ],
       },
     ],
@@ -168,7 +230,13 @@ module.exports = {
     /**
      * 限制各种变量或类型的命名规则
      */
-    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'class',
+        format: ['PascalCase'],
+      },
+    ],
     /**
      * 禁止使用 Array 构造函数
      */
@@ -209,8 +277,9 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     /**
      * 禁止定义空的接口
+     * @reason 允许定义空的接口作为基础类型声明
      */
-    '@typescript-eslint/no-empty-interface': 'error',
+    '@typescript-eslint/no-empty-interface': 'off',
     /**
      * 禁止使用 any
      */
@@ -243,7 +312,6 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 'error',
     /**
      * 禁止在类之外的地方使用 this
-     * @reason 只允许在 class 中使用 this
      */
     'no-invalid-this': 'off',
     '@typescript-eslint/no-invalid-this': 'error',
@@ -319,6 +387,7 @@ module.exports = {
     '@typescript-eslint/no-redeclare': 'off',
     /**
      * 禁止使用 require
+     * 原则上禁止动态引用，对于循环依赖，通过 IOC 的方式解决。
      * @reason 统一使用 import 来引入模块，特殊情况使用单行注释允许 require 引入
      */
     '@typescript-eslint/no-require-imports': 'error',
@@ -409,6 +478,7 @@ module.exports = {
     ],
     /**
      * 已定义的变量必须使用
+     * @reason 编译阶段检查就足够了
      */
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
@@ -452,9 +522,10 @@ module.exports = {
      */
     '@typescript-eslint/prefer-for-of': 'error',
     /**
-     * 使用函数类型别名替代包含函数调用声明的接口
+     * 可以简写为函数类型的接口或字面类型的话，则必须简写
+     * @reason 不要求函数类型接口的简写，因为可读性并不好。
      */
-    '@typescript-eslint/prefer-function-type': 'error',
+    '@typescript-eslint/prefer-function-type': 'off',
     /**
      * 使用 includes 而不是 indexOf
      */

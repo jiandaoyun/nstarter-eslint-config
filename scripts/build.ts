@@ -9,7 +9,7 @@ const eslintInstance = new ESLint({});
 import insertTag from 'insert-tag';
 import xmlEscape from 'xml-escape';
 
-import { NAMESPACE_CONFIG, NAMESPACES, buildEslintrcMeta, Namespace, Rule, locale } from '../config';
+import { NAMESPACE_CONFIG, NAMESPACES, buildEslintrcMeta, Namespace, Rule } from '../config';
 
 import '../site/public/vendors/prism';
 declare const Prism: any;
@@ -44,7 +44,6 @@ class Builder {
     this.rulesContent = this.getRulesContent();
     this.initialEslintrcContent = this.getInitialEslintrc();
     this.buildRulesJson();
-    this.buildLocaleJson();
     this.buildEslintrc();
   }
 
@@ -88,6 +87,9 @@ class Builder {
     const filePath = path.resolve(__dirname, '../test', this.namespace, ruleName, '.eslintrc.js');
     const fileModule = require(filePath);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
+    if (/^import-/.test(ruleName)) {
+      ruleName = ruleName.replace(/^import-/, 'import/');
+    }
     const fullRuleName = NAMESPACE_CONFIG[this.namespace].rulePrefix + ruleName;
     const comments = /\/\*\*.*\*\//gms.exec(fileContent);
     const rule: Rule = {
@@ -172,7 +174,7 @@ class Builder {
         }
         content.push(' */');
         // 若继承自基础规则，则需要先关闭基础规则
-        const extendsBaseRule = this.ruleMetaMap[rule.name].extendsBaseRule;
+        const extendsBaseRule = this.ruleMetaMap[rule.name]?.extendsBaseRule;
         if (extendsBaseRule) {
           content.push(`'${extendsBaseRule}': 'off',`);
         }
@@ -201,29 +203,16 @@ class Builder {
     );
   }
 
-  /** 写入 config/locale/*.json */
-  private buildLocaleJson() {
-    const current: any = locale['zh-CN'];
-
-    Object.values(this.ruleList).forEach((rule) => {
-      if (!current[rule.description]) {
-        current[rule.description] = rule.description;
-      }
-      if (rule.reason && !current[rule.reason]) {
-        current[rule.reason] = rule.reason;
-      }
-    });
-
-    this.writeWithPrettier(path.resolve(__dirname, '../config/locale/en-US.json'), JSON.stringify(current), 'json');
-  }
-
   /** 写入各插件的 eslintrc 文件 */
   private buildEslintrc() {
+    let initialContent = this.initialEslintrcContent;
+    if (this.namespace !== 'base') {
+      // 去掉 extends
+      initialContent = initialContent.replace(/extends:.*],/, '');
+    }
     const eslintrcContent =
       buildEslintrcMeta() +
-      this.initialEslintrcContent
-        // 去掉 extends
-        .replace(/extends:.*],/, '')
+      initialContent
         // 将 rulesContent 写入 rules
         .replace(/(,\s*rules: {([\s\S]*?)})?,\s*};/, (_match, _p1, p2) => {
           const rules = p2 ? `${p2}${this.rulesContent}` : this.rulesContent;

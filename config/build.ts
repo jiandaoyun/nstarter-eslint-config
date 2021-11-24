@@ -45,8 +45,6 @@ export function buildEslintrcMeta() {
    'eslint',
    'eslint-plugin-import',
    '@babel/eslint-parser',
-   '@babel/preset-react',
-   'eslint-plugin-react',
    '@typescript-eslint/parser',
    '@typescript-eslint/eslint-plugin',
  ]

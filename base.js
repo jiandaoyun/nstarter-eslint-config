@@ -1,22 +1,11 @@
 /**
- * AlloyTeam ESLint 规则
- * https://alloyteam.github.io/eslint-config-alloy/
- *
- * 贡献者：
- *   xcatliu <xcatliu@gmail.com>
- *   heyli <lcxfs1991@gmail.com>
- *   Swan <noreply@github.com>
- *   DiamondYuan <admin@diamondyuan.com>
- *   Dash Chen <noreply@github.com>
- *   lzw <mingxin2014@gmail.com>
- *   ryoliu <sfesh@163.com>
- *   sunhui04 <sunhui04@meituan.com>
+ * nstarter ESLint 规则
+ * https://jiandaoyun.github.io/nstarter-eslint-config/
  *
  * 依赖版本：
  *   eslint ^7.32.0
+ *   eslint-plugin-import ^2.25.3
  *   @babel/eslint-parser ^7.15.8
- *   @babel/preset-react ^7.14.5
- *   eslint-plugin-react ^7.26.1
  *   @typescript-eslint/parser ^5.0.0
  *   @typescript-eslint/eslint-plugin ^5.0.0
  *
@@ -24,6 +13,7 @@
  */
 module.exports = {
   parser: '@babel/eslint-parser',
+  extends: ['plugin:import/warnings'],
   parserOptions: {
     ecmaVersion: 2019,
     // ECMAScript modules 模式
@@ -50,15 +40,10 @@ module.exports = {
   root: true,
   rules: {
     /**
-     * setter 必须有对应的 getter，getter 可以没有对应的 setter
+     * 现阶段不要求 setter 必须有对应的 getter，getter 可以没有对应的 setter。取决于具体业务需要。
+     * 待开闭原则确定后启用。
      */
-    'accessor-pairs': [
-      'error',
-      {
-        setWithoutGet: true,
-        getWithoutSet: false,
-      },
-    ],
+    'accessor-pairs': 'off',
     /**
      * 数组的方法除了 forEach 之外，回调函数必须有返回值
      */
@@ -73,6 +58,10 @@ module.exports = {
      * @reason 已经禁止使用 var 了
      */
     'block-scoped-var': 'off',
+    /**
+     * callback 之后必须立即 return
+     */
+    'callback-return': 'off',
     /**
      * 变量名必须是 camelCase 风格的
      * @reason 很多 api 或文件名都不是 camelCase 风格的
@@ -110,9 +99,15 @@ module.exports = {
      */
     'constructor-super': 'error',
     /**
-     * switch 语句必须有 default
+     * if 后面必须要有 {
+     * @reason 可读性更好
      */
-    'default-case': 'off',
+    curly: ['error', 'all'],
+    /**
+     * switch 语句必须有 default
+     * @reason 避免部分场景下未调用 callback
+     */
+    'default-case': 'error',
     /**
      * switch 语句中的 default 必须在最后
      */
@@ -126,6 +121,11 @@ module.exports = {
      * @reason 当需要写一系列属性的时候，可以更统一
      */
     'dot-notation': 'off',
+    /**
+     * 文件最后一行必须有一个空行
+     * @reason 部分系统下的兼容性直到规范
+     */
+    'eol-last': ['warn', 'always'],
     /**
      * 必须使用 === 或 !==，禁止使用 == 或 !=
      */
@@ -157,6 +157,10 @@ module.exports = {
      */
     'getter-return': 'error',
     /**
+     * require 必须在全局作用域下
+     */
+    'global-require': 'off',
+    /**
      * setter 和 getter 必须写在一起
      */
     'grouped-accessor-pairs': 'error',
@@ -164,6 +168,15 @@ module.exports = {
      * for in 内部必须有 hasOwnProperty
      */
     'guard-for-in': 'error',
+    /**
+     * callback 中的 err 必须被处理
+     * @reason 它是通过字符串匹配来判断函数参数 err 的，不准确
+     */
+    'handle-callback-err': 'off',
+    /**
+     * 禁止使用指定的标识符
+     */
+    'id-blacklist': 'off',
     /**
      * 禁止使用指定的标识符
      */
@@ -177,6 +190,17 @@ module.exports = {
      */
     'id-match': 'off',
     /**
+     * 禁止使用默认导出模块。
+     * @reason 默认导出会允许被引用时重命名，不便于重构与统一目标对象理解。
+     * 不过对于 npm 模块的最外层封装，建议使用默认导出。
+     */
+    'import/no-default-export': 'error',
+    /**
+     * 禁止保留未使用的模块依赖
+     * @reason 避免产生循环依赖的问题。
+     */
+    'import/no-unused-modules': 'error',
+    /**
      * 变量必须在定义的时候赋值
      */
     'init-declarations': 'off',
@@ -184,6 +208,11 @@ module.exports = {
      * 单行注释必须写在上一行
      */
     'line-comment-position': 'off',
+    /**
+     * 要求统一使用 unix 风格的换行符
+     * @reason 避免部分多行模板字符串在输出时产生连续换行问题
+     */
+    'linebreak-style': ['error', 'unix'],
     /**
      * 类的成员之间是否需要空行
      * @reason 有时为了紧凑需要挨在一起，有时为了可读性需要空一行
@@ -204,15 +233,27 @@ module.exports = {
     /**
      * 限制函数块中的代码行数
      */
-    'max-lines-per-function': 'off',
+    'max-lines-per-function': [
+      'error',
+      {
+        max: 100,
+        skipComments: true,
+        skipBlankLines: true,
+      },
+    ],
     /**
-     * 回调函数嵌套禁止超过 3 层，多了请用 async await 替代
+     * 回调函数嵌套禁止超过 5 层
      */
-    'max-nested-callbacks': ['error', 3],
+    'max-nested-callbacks': [
+      'error',
+      {
+        max: 5,
+      },
+    ],
     /**
-     * 函数的参数禁止超过 3 个
+     * 函数的参数禁止超过 7 个
      */
-    'max-params': ['error', 3],
+    'max-params': ['error', 7],
     /**
      * 限制函数块中的语句数量
      */
@@ -220,7 +261,12 @@ module.exports = {
     /**
      * 限制一行中的语句数量
      */
-    'max-statements-per-line': 'off',
+    'max-statements-per-line': [
+      'error',
+      {
+        max: 1,
+      },
+    ],
     /**
      * 约束多行注释的格式
      * @reason 能写注释已经不容易了，不需要限制太多
@@ -261,6 +307,11 @@ module.exports = {
      * 禁止使用位运算
      */
     'no-bitwise': 'off',
+    /**
+     * 禁止直接使用 Buffer
+     * @reason Buffer 构造函数是已废弃的语法
+     */
+    'no-buffer-constructor': 'error',
     /**
      * 禁止使用 caller 或 callee
      * @reason 它们是已废弃的语法
@@ -456,9 +507,9 @@ module.exports = {
     'no-invalid-regexp': 'error',
     /**
      * 禁止在类之外的地方使用 this
-     * @reason 只允许在 class 中使用 this
+     * @reason 会与 typescript 的类属性检测冲突
      */
-    'no-invalid-this': 'error',
+    'no-invalid-this': 'off',
     /**
      * 禁止使用特殊空白符（比如全角空格），除非是出现在字符串、正则表达式或模版字符串中
      */
@@ -514,7 +565,11 @@ module.exports = {
      */
     'no-misleading-character-class': 'error',
     /**
-     * 禁止连续赋值，比如 foo = bar = 1
+     * 相同类型的 require 必须放在一起
+     */
+    'no-mixed-requires': 'off',
+    /**
+     * 禁止连续赋值，比如 a = b = c = 5
      */
     'no-multi-assign': 'off',
     /**
@@ -544,6 +599,10 @@ module.exports = {
      * 禁止直接 new Object
      */
     'no-new-object': 'error',
+    /**
+     * 禁止直接 new require('foo')
+     */
+    'no-new-require': 'error',
     /**
      * 禁止使用 new 来生成 Symbol
      */
@@ -576,9 +635,22 @@ module.exports = {
      */
     'no-param-reassign': 'error',
     /**
+     * 禁止对 __dirname 或 __filename 使用字符串连接
+     * @reason 不同平台下的路径符号不一致，建议使用 path 处理平台差异性
+     */
+    'no-path-concat': 'error',
+    /**
      * 禁止使用 ++ 或 --
      */
     'no-plusplus': 'off',
+    /**
+     * 禁止使用 process.env.NODE_ENV
+     */
+    'no-process-env': 'off',
+    /**
+     * 禁止使用 process.exit(0)
+     */
+    'no-process-exit': 'off',
     /**
      * 禁止在 Promise 的回调函数中直接 return
      */
@@ -615,6 +687,10 @@ module.exports = {
      */
     'no-restricted-imports': 'off',
     /**
+     * 禁止使用指定的模块
+     */
+    'no-restricted-modules': 'off',
+    /**
      * 禁止使用指定的对象属性
      */
     'no-restricted-properties': 'off',
@@ -629,7 +705,7 @@ module.exports = {
     /**
      * 禁止在 return 语句里使用 await
      */
-    'no-return-await': 'off',
+    'no-return-await': 'error',
     /**
      * 禁止出现 location.href = 'javascript:void(0)';
      * @reason 有些场景下还是需要用到这个
@@ -665,9 +741,13 @@ module.exports = {
      */
     'no-sparse-arrays': 'error',
     /**
+     * 禁止使用 node 中的同步的方法，比如 fs.readFileSync
+     */
+    'no-sync': 'off',
+    /**
      * 禁止在普通字符串中出现模版字符串里的变量形式
      */
-    'no-template-curly-in-string': 'error',
+    'no-template-curly-in-string': 'off',
     /**
      * 禁止使用三元表达式
      */
@@ -773,7 +853,7 @@ module.exports = {
     /**
      * 禁止出现没必要的 call 或 apply
      */
-    'no-useless-call': 'error',
+    'no-useless-call': 'off',
     /**
      * 禁止在 catch 中仅仅只是把错误 throw 出去
      * @reason 这样的 catch 是没有意义的，等价于直接执行 try 里的代码
@@ -823,13 +903,13 @@ module.exports = {
     'no-with': 'off',
     /**
      * 必须使用 a = {b} 而不是 a = {b: b}
-     * @reason 有时后者可以使代码结构更清晰
+     * @reason 减少代码冗余
      */
-    'object-shorthand': 'off',
+    'object-shorthand': ['error', 'always'],
     /**
      * 禁止变量申明时用逗号一次申明多个
      */
-    'one-var': ['error', 'never'],
+    'one-var': 'off',
     /**
      * 必须使用 x = x + y 而不是 x += y
      */
@@ -839,13 +919,20 @@ module.exports = {
      */
     'padding-line-between-statements': 'off',
     /**
-     * 回调函数必须使用箭头函数
+     * 必须使用箭头函数作为回调
+     * @reason 避免产生闭包中 this 指向的问题。
+     * 特殊规则，允许有名称定义的函数使用。
      */
-    'prefer-arrow-callback': 'error',
+    'prefer-arrow-callback': [
+      'error',
+      {
+        allowNamedFunctions: true,
+      },
+    ],
     /**
      * 申明后不再被修改的变量必须使用 const 来申明
      */
-    'prefer-const': 'off',
+    'prefer-const': 'error',
     /**
      * 必须使用解构赋值
      */
@@ -862,7 +949,7 @@ module.exports = {
     /**
      * 必须使用 0b11111011 而不是 parseInt()
      */
-    'prefer-numeric-literals': 'off',
+    'prefer-numeric-literals': 'error',
     /**
      * 必须使用 ... 而不是 Object.assign，除非 Object.assign 的第一个参数是一个变量
      */
@@ -893,15 +980,30 @@ module.exports = {
     radix: 'error',
     /**
      * 禁止将 await 或 yield 的结果做为运算符的后面项
-     * @reason 这样会导致不符合预期的结果
      * https://github.com/eslint/eslint/issues/11899
      * 在上面 issue 修复之前，关闭此规则
+     * @reason 这样会导致不符合预期的结果
      */
     'require-atomic-updates': 'off',
     /**
      * async 函数中必须存在 await 语句
      */
     'require-await': 'off',
+    /**
+     * 限制一行中的语句数量
+     */
+    'require-jsdoc': [
+      'error',
+      {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: false,
+          ClassDeclaration: false,
+          ArrowFunctionExpression: false,
+          FunctionExpression: false,
+        },
+      },
+    ],
     /**
      * 正则表达式中必须要加上 u 标志
      */
@@ -910,6 +1012,10 @@ module.exports = {
      * generator 函数内必须有 yield
      */
     'require-yield': 'error',
+    /**
+     * statement 必须用分号分隔
+     */
+    semi: 'error',
     /**
      * 导入必须按规则排序
      */
@@ -924,15 +1030,15 @@ module.exports = {
     'sort-vars': 'off',
     /**
      * 注释的斜线或 * 后必须有空格
+     * 特殊规则，nstarter 模板中的代码块声明标签必须与注释符号相连。
+     * @reason 提升可读性
      */
     'spaced-comment': [
       'error',
       'always',
       {
-        block: {
-          exceptions: ['*'],
-          balanced: true,
-        },
+        exceptions: ['#alt', '#endalt'],
+        markers: ['#', '#module', '#endmodule'],
       },
     ],
     /**
@@ -943,6 +1049,11 @@ module.exports = {
      * 创建 Symbol 时必须传入参数
      */
     'symbol-description': 'error',
+    /**
+     * 模板字符串变量括号前后保留空格。
+     * @reason 可读性更好
+     */
+    'template-curly-spacing': ['warn', 'always'],
     /**
      * 必须使用 isNaN(foo) 而不是 foo === NaN
      */
@@ -958,12 +1069,6 @@ module.exports = {
     /**
      * 必须使用 if (foo === 5) 而不是 if (5 === foo)
      */
-    yoda: [
-      'error',
-      'never',
-      {
-        onlyEquality: true,
-      },
-    ],
+    yoda: 'off',
   },
 };

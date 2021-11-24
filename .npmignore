@@ -1,5 +1,7 @@
 .cache/
 .vscode/
+.github/
+.husky/
 
 dist/
 
@@ -14,7 +16,7 @@ test/
 .gitignore
 
 .prettierignore
-prettier.config.js
+.prettierrc.js
 
 .travis.yml
 

@@ -1,2 +1,7 @@
 dist
-site/public
+site/
+
+test/index.ts
+
+scripts/
+config/
