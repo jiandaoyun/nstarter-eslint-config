@@ -41,7 +41,7 @@ pipeline {
         always {
             script {
                 sh(script: "rm .npmrc", label: "clear token")
-                sh(script: "npm run clear:dist", "clear dist")
+                sh(script: "npm run build:clean", "clear dist")
             }
         }
     }
