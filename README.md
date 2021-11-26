@@ -55,7 +55,7 @@ eslint-config-nstarter 通过高度的自动化，将一切能自动化管理的
 安装：
 
 ```bash
-npm install --save-dev eslint @babel/eslint-parser eslint-plugin-import eslint-config-nstarter
+npm install --save-dev eslint eslint-config-nstarter
 ```
 
 在你的项目根目录下创建 `.eslintrc.js`，并将以下内容复制到文件中：
@@ -91,7 +91,7 @@ module.exports = {
 安装：
 
 ```bash
-npm install --save-dev eslint typescript @babel/eslint-parser eslint-plugin-import @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-nstarter
+npm install --save-dev eslint typescript eslint-config-nstarter
 ```
 
 在你的项目根目录下创建 `.eslintrc.js`，并将以下内容复制到文件中：

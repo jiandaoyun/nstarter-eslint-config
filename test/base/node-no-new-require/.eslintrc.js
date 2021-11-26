@@ -3,6 +3,6 @@ module.exports = {
     /**
      * 禁止直接 new require('foo')
      */
-    'no-new-require': 'error',
+    'node/no-new-require': 'error',
   },
 };

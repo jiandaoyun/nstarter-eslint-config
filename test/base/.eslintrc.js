@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@babel/eslint-parser',
-  extends: ['plugin:import/warnings'],
+  extends: [],
   parserOptions: {
     ecmaVersion: 2019,
     // ECMAScript modules 模式
@@ -25,4 +25,5 @@ module.exports = {
   },
   // 以当前目录为根目录，不再向上查找 .eslintrc.js
   root: true,
+  plugins: ['import', 'node'],
 };

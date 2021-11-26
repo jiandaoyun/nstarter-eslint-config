@@ -3,6 +3,6 @@ module.exports = {
     /**
      * callback 之后必须立即 return
      */
-    'callback-return': 'off',
+    'node/callback-return': 'off',
   },
 };

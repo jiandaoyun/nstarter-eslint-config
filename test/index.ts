@@ -22,6 +22,8 @@ async function main() {
     'import-no-default-export',
     'max-lines-per-function',
     'no-duplicate-imports',
+    'node-no-new-require',
+    'node-no-path-concat',
     'template-curly-spacing',
     'yoda',
     '@typescript-eslint/member-ordering',

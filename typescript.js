@@ -4,10 +4,10 @@
  *
  * 依赖版本：
  *   eslint ^7.32.0
- *   eslint-plugin-import ^2.25.3
- *   @babel/eslint-parser ^7.15.8
- *   @typescript-eslint/parser ^5.0.0
- *   @typescript-eslint/eslint-plugin ^5.0.0
+ *   eslint-plugin-import undefined
+ *   @babel/eslint-parser undefined
+ *   @typescript-eslint/parser undefined
+ *   @typescript-eslint/eslint-plugin undefined
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */

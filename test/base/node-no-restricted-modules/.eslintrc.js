@@ -3,6 +3,6 @@ module.exports = {
     /**
      * 禁止使用指定的模块
      */
-    'no-restricted-modules': 'off',
+    'node/no-restricted-modules': 'off',
   },
 };

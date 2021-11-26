@@ -87,8 +87,8 @@ class Builder {
     const filePath = path.resolve(__dirname, '../test', this.namespace, ruleName, '.eslintrc.js');
     const fileModule = require(filePath);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
-    if (/^import-/.test(ruleName)) {
-      ruleName = ruleName.replace(/^import-/, 'import/');
+    if (/^(import|node)-/.test(ruleName)) {
+      ruleName = ruleName.replace(/^(import|node)-/, '$1/');
     }
     const fullRuleName = NAMESPACE_CONFIG[this.namespace].rulePrefix + ruleName;
     const comments = /\/\*\*.*\*\//gms.exec(fileContent);
@@ -205,14 +205,11 @@ class Builder {
 
   /** 写入各插件的 eslintrc 文件 */
   private buildEslintrc() {
-    let initialContent = this.initialEslintrcContent;
-    if (this.namespace !== 'base') {
-      // 去掉 extends
-      initialContent = initialContent.replace(/extends:.*],/, '');
-    }
     const eslintrcContent =
       buildEslintrcMeta() +
-      initialContent
+      this.initialEslintrcContent
+        // 去掉 extends
+        .replace(/extends:.*],/, '')
         // 将 rulesContent 写入 rules
         .replace(/(,\s*rules: {([\s\S]*?)})?,\s*};/, (_match, _p1, p2) => {
           const rules = p2 ? `${p2}${this.rulesContent}` : this.rulesContent;

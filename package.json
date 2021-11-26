@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-nstarter",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "nstarter ESLint 规则",
   "main": "index.js",
   "scripts": {
@@ -46,9 +46,15 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "@babel/eslint-parser": "^7.15.8",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.5",
-    "@babel/eslint-parser": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@types/cookie": "^0.4.1",
     "@types/doctrine": "^0.0.5",
@@ -59,15 +65,12 @@
     "@types/react-dom": "^17.0.9",
     "@types/rimraf": "^3.0.2",
     "@types/xml-escape": "^1.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
     "chokidar-cli": "^3.0.0",
     "cookie": "^0.4.1",
     "copyfiles": "^2.4.1",
     "doctrine": "^3.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.3",
     "html-webpack-plugin": "^5.3.2",
     "husky": "^7.0.2",
     "insert-tag": "^0.1.2",

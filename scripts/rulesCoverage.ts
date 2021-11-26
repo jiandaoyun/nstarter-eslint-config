@@ -46,10 +46,6 @@ NAMESPACES.forEach((namespace) => {
         errors.push(`${fullRuleName} is deprecated, please REMOVE it`);
         return;
       }
-      if (prettierRules.includes(fullRuleName)) {
-        errors.push(`${fullRuleName} is ignored by prettier, please REMOVE it`);
-        return;
-      }
       if (activeRules.includes(fullRuleName)) {
         remainingRules.splice(remainingRules.indexOf(fullRuleName), 1);
         return;

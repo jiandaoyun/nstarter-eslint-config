@@ -3,6 +3,6 @@ module.exports = {
     /**
      * 禁止使用 process.exit(0)
      */
-    'no-process-exit': 'off',
+    'node/no-process-exit': 'off',
   },
 };

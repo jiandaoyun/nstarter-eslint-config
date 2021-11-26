@@ -3,6 +3,6 @@ module.exports = {
     /**
      * require 必须在全局作用域下
      */
-    'global-require': 'off',
+    'node/global-require': 'off',
   },
 };

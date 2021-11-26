@@ -4,16 +4,16 @@
  *
  * 依赖版本：
  *   eslint ^7.32.0
- *   eslint-plugin-import ^2.25.3
- *   @babel/eslint-parser ^7.15.8
- *   @typescript-eslint/parser ^5.0.0
- *   @typescript-eslint/eslint-plugin ^5.0.0
+ *   eslint-plugin-import undefined
+ *   @babel/eslint-parser undefined
+ *   @typescript-eslint/parser undefined
+ *   @typescript-eslint/eslint-plugin undefined
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */
 module.exports = {
   parser: '@babel/eslint-parser',
-  extends: ['plugin:import/warnings'],
+
   parserOptions: {
     ecmaVersion: 2019,
     // ECMAScript modules 模式
@@ -38,6 +38,7 @@ module.exports = {
   },
   // 以当前目录为根目录，不再向上查找 .eslintrc.js
   root: true,
+  plugins: ['import', 'node'],
   rules: {
     /**
      * 现阶段不要求 setter 必须有对应的 getter，getter 可以没有对应的 setter。取决于具体业务需要。
@@ -58,10 +59,6 @@ module.exports = {
      * @reason 已经禁止使用 var 了
      */
     'block-scoped-var': 'off',
-    /**
-     * callback 之后必须立即 return
-     */
-    'callback-return': 'off',
     /**
      * 变量名必须是 camelCase 风格的
      * @reason 很多 api 或文件名都不是 camelCase 风格的
@@ -157,10 +154,6 @@ module.exports = {
      */
     'getter-return': 'error',
     /**
-     * require 必须在全局作用域下
-     */
-    'global-require': 'off',
-    /**
      * setter 和 getter 必须写在一起
      */
     'grouped-accessor-pairs': 'error',
@@ -168,15 +161,6 @@ module.exports = {
      * for in 内部必须有 hasOwnProperty
      */
     'guard-for-in': 'error',
-    /**
-     * callback 中的 err 必须被处理
-     * @reason 它是通过字符串匹配来判断函数参数 err 的，不准确
-     */
-    'handle-callback-err': 'off',
-    /**
-     * 禁止使用指定的标识符
-     */
-    'id-blacklist': 'off',
     /**
      * 禁止使用指定的标识符
      */
@@ -565,10 +549,6 @@ module.exports = {
      */
     'no-misleading-character-class': 'error',
     /**
-     * 相同类型的 require 必须放在一起
-     */
-    'no-mixed-requires': 'off',
-    /**
      * 禁止连续赋值，比如 a = b = c = 5
      */
     'no-multi-assign': 'off',
@@ -599,10 +579,6 @@ module.exports = {
      * 禁止直接 new Object
      */
     'no-new-object': 'error',
-    /**
-     * 禁止直接 new require('foo')
-     */
-    'no-new-require': 'error',
     /**
      * 禁止使用 new 来生成 Symbol
      */
@@ -635,22 +611,9 @@ module.exports = {
      */
     'no-param-reassign': 'error',
     /**
-     * 禁止对 __dirname 或 __filename 使用字符串连接
-     * @reason 不同平台下的路径符号不一致，建议使用 path 处理平台差异性
-     */
-    'no-path-concat': 'error',
-    /**
      * 禁止使用 ++ 或 --
      */
     'no-plusplus': 'off',
-    /**
-     * 禁止使用 process.env.NODE_ENV
-     */
-    'no-process-env': 'off',
-    /**
-     * 禁止使用 process.exit(0)
-     */
-    'no-process-exit': 'off',
     /**
      * 禁止在 Promise 的回调函数中直接 return
      */
@@ -686,10 +649,6 @@ module.exports = {
      * 禁止导入指定的模块
      */
     'no-restricted-imports': 'off',
-    /**
-     * 禁止使用指定的模块
-     */
-    'no-restricted-modules': 'off',
     /**
      * 禁止使用指定的对象属性
      */
@@ -740,10 +699,6 @@ module.exports = {
      * 禁止在数组中出现连续的逗号
      */
     'no-sparse-arrays': 'error',
-    /**
-     * 禁止使用 node 中的同步的方法，比如 fs.readFileSync
-     */
-    'no-sync': 'off',
     /**
      * 禁止在普通字符串中出现模版字符串里的变量形式
      */
@@ -901,6 +856,48 @@ module.exports = {
      * @reason 编译阶段就会报错了
      */
     'no-with': 'off',
+    /**
+     * callback 之后必须立即 return
+     */
+    'node/callback-return': 'off',
+    /**
+     * require 必须在全局作用域下
+     */
+    'node/global-require': 'off',
+    /**
+     * callback 中的 err 必须被处理
+     * @reason 它是通过字符串匹配来判断函数参数 err 的，不准确
+     */
+    'node/handle-callback-err': 'off',
+    /**
+     * 相同类型的 require 必须放在一起
+     */
+    'node/no-mixed-requires': 'off',
+    /**
+     * 禁止直接 new require('foo')
+     */
+    'node/no-new-require': 'error',
+    /**
+     * 禁止对 __dirname 或 __filename 使用字符串连接
+     * @reason 不同平台下的路径符号不一致，建议使用 path 处理平台差异性
+     */
+    'node/no-path-concat': 'error',
+    /**
+     * 禁止使用 process.env.NODE_ENV
+     */
+    'node/no-process-env': 'off',
+    /**
+     * 禁止使用 process.exit(0)
+     */
+    'node/no-process-exit': 'off',
+    /**
+     * 禁止使用指定的模块
+     */
+    'node/no-restricted-modules': 'off',
+    /**
+     * 禁止使用 node 中的同步的方法，比如 fs.readFileSync
+     */
+    'node/no-sync': 'off',
     /**
      * 必须使用 a = {b} 而不是 a = {b: b}
      * @reason 减少代码冗余
