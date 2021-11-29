@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-nstarter",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "nstarter ESLint 规则",
   "main": "index.js",
   "scripts": {
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.15.8",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "~5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0"
