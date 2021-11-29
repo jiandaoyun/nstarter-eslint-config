@@ -47,6 +47,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@babel/core": "^7.15.5",
     "@babel/eslint-parser": "^7.15.8",
     "@typescript-eslint/eslint-plugin": "~5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
@@ -54,7 +55,6 @@
     "eslint-plugin-node": "^11.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
     "@babel/preset-react": "^7.14.5",
     "@types/cookie": "^0.4.1",
     "@types/doctrine": "^0.0.5",
