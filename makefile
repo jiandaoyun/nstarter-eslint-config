@@ -7,6 +7,6 @@ docker-release:
 	docker build --target=release  --build-arg TOKEN="${TOKEN}" .
 
 clean:
-	rm -rf .npmrc report/
+	rm -rf report/
 
 .PHONY: clean
