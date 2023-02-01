@@ -6,7 +6,7 @@ import { GitHubCorner } from './GitHubCorner';
 import { RuleTable } from './RuleTable';
 import { getLanguage, getQuery, newUrl, replaceUrl, defaultTo, t } from '../utils';
 
-export const App: React.SFC = () => {
+export const App: React.FC = () => {
   const query = getQuery();
   const [namespace, setNamespace] = useState(defaultTo<Namespace>(query.rule, NAMESPACES[0], NAMESPACES));
   const [hideOff, toggleHideOff] = useState(query.hideOff === '1');

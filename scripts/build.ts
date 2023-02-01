@@ -52,7 +52,7 @@ class Builder {
     const { rulePrefix, pluginName } = NAMESPACE_CONFIG[this.namespace];
     const ruleEntries = pluginName
       ? Object.entries<any>(require(pluginName).rules)
-      : Array.from<any>(require('eslint/lib/rules').entries());
+      : Array.from<any>(require('eslint/use-at-your-own-risk').builtinRules.entries());
     return ruleEntries.reduce((prev, [ruleName, ruleValue]) => {
       const fullRuleName = rulePrefix + ruleName;
       const meta = ruleValue.meta;
@@ -114,12 +114,17 @@ class Builder {
       rule.description = this.baseRuleConfig[rule.extendsBaseRule].description;
     }
     // 若没有原因，并且有继承的规则，并且本规则的配置项与继承的规则的配置项一致，则使用继承的规则的原因
-    if (
-      !rule.reason &&
-      rule.extendsBaseRule &&
-      JSON.stringify(rule.value) === JSON.stringify(this.baseRuleConfig[rule.extendsBaseRule].value)
-    ) {
-      rule.reason = this.baseRuleConfig[rule.extendsBaseRule].reason;
+    try {
+      if (
+        !rule.reason &&
+        rule.extendsBaseRule &&
+        JSON.stringify(rule.value) === JSON.stringify(this.baseRuleConfig[rule.extendsBaseRule].value)
+      ) {
+        rule.reason = this.baseRuleConfig[rule.extendsBaseRule].reason;
+      }
+    } catch (e) {
+      console.log(e);
+      console.log(rule.extendsBaseRule);
     }
     const badFilePath = path.resolve(
       path.dirname(filePath),
@@ -173,9 +178,9 @@ class Builder {
           ];
         }
         content.push(' */');
-        // 若继承自基础规则，则需要先关闭基础规则
+        // 若继承自基础规则，并且是 ts 规则，则需要先关闭基础规则
         const extendsBaseRule = this.ruleMetaMap[rule.name]?.extendsBaseRule;
-        if (extendsBaseRule) {
+        if (extendsBaseRule && this.namespace === 'typescript') {
           content.push(`'${extendsBaseRule}': 'off',`);
         }
         content.push(`'${rule.name}': ${JSON.stringify(rule.value, null, 4)},`);

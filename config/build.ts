@@ -21,11 +21,7 @@ export const NAMESPACE_CONFIG = {
     prismLanguage: 'ts',
     rulePrefix: '@typescript-eslint/',
     ruleConfig: require('./rules/typescript.json'),
-    getDocsUrl: (rule: string) =>
-      `https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/${rule.replace(
-        /.*\//,
-        '',
-      )}.md`,
+    getDocsUrl: (rule: string) => `https://typescript-eslint.io/rules/${rule.replace(/.*\//, '')}/`,
     pluginName: '@typescript-eslint/eslint-plugin',
   },
 };
@@ -44,6 +40,7 @@ export function buildEslintrcMeta() {
  *   ${[
    'eslint',
    'eslint-plugin-import',
+   '@babel/core',
    '@babel/eslint-parser',
    '@typescript-eslint/parser',
    '@typescript-eslint/eslint-plugin',

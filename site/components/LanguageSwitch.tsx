@@ -8,7 +8,7 @@ interface LanguagesProps {
 }
 
 /** 语言切换组件 */
-export const LanguageSwtich: React.SFC<LanguagesProps> = ({ language }) => {
+export const LanguageSwitch: React.FC<LanguagesProps> = ({ language }) => {
   const renderItems: ReactElement[] = [];
 
   Object.entries(languageOptions).forEach(([key, value], index) => {

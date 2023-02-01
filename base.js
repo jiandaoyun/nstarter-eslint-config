@@ -3,11 +3,12 @@
  * https://jiandaoyun.github.io/nstarter-eslint-config/
  *
  * 依赖版本：
- *   eslint ^7.32.0
+ *   eslint ^8.31.0
  *   eslint-plugin-import undefined
+ *   @babel/core undefined
  *   @babel/eslint-parser undefined
- *   @typescript-eslint/parser undefined
- *   @typescript-eslint/eslint-plugin undefined
+ *   @typescript-eslint/parser ^5.48.1
+ *   @typescript-eslint/eslint-plugin ^5.48.1
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */
@@ -203,6 +204,10 @@ module.exports = {
      */
     'lines-between-class-members': 'off',
     /**
+     * 使用 a ||= b 替代 a = a || b
+     */
+    'logical-assignment-operators': 'off',
+    /**
      * 限制一个文件中类的数量
      */
     'max-classes-per-file': 'off',
@@ -292,11 +297,6 @@ module.exports = {
      */
     'no-bitwise': 'off',
     /**
-     * 禁止直接使用 Buffer
-     * @reason Buffer 构造函数是已废弃的语法
-     */
-    'no-buffer-constructor': 'error',
-    /**
      * 禁止使用 caller 或 callee
      * @reason 它们是已废弃的语法
      */
@@ -325,6 +325,10 @@ module.exports = {
      * 禁止对使用 const 定义的常量重新赋值
      */
     'no-const-assign': 'error',
+    /**
+     * 禁止出现不影响值的表达式
+     */
+    'no-constant-binary-expression': 'error',
     /**
      * 禁止将常量作为分支条件判断中的测试表达式，但允许作为循环条件判断中的测试表达式
      */
@@ -385,7 +389,7 @@ module.exports = {
     /**
      * 禁止重复导入模块
      */
-    'no-duplicate-imports': 'error',
+    'no-duplicate-imports': 'off',
     /**
      * 禁止在 else 内使用 return，必须改为提前结束
      * @reason else 中使用 return 可以使代码结构更清晰
@@ -413,6 +417,10 @@ module.exports = {
      * 禁止解构赋值中出现空 {} 或 []
      */
     'no-empty-pattern': 'error',
+    /**
+     * 禁止 class 中出现空的 static 代码块
+     */
+    'no-empty-static-block': 'off',
     /**
      * 禁止使用 foo == null，必须使用 foo === null
      */
@@ -575,6 +583,10 @@ module.exports = {
      * @reason 这和 eval 是等价的
      */
     'no-new-func': 'error',
+    /**
+     * 禁止错误的使用 new 来实例化一个非构造函数
+     */
+    'no-new-native-nonconstructor': 'error',
     /**
      * 禁止直接 new Object
      */
@@ -778,6 +790,10 @@ module.exports = {
      */
     'no-unused-labels': 'off',
     /**
+     * 禁止类出现未使用的私有成员
+     */
+    'no-unused-private-class-members': 'error',
+    /**
      * 已定义的变量必须使用
      */
     'no-unused-vars': [
@@ -948,6 +964,10 @@ module.exports = {
      */
     'prefer-numeric-literals': 'error',
     /**
+     * 使用 Object.hasOwn() 而不是 Object.prototype.hasOwnProperty.call()
+     */
+    'prefer-object-has-own': 'error',
+    /**
      * 必须使用 ... 而不是 Object.assign，除非 Object.assign 的第一个参数是一个变量
      */
     'prefer-object-spread': 'error',
@@ -986,21 +1006,6 @@ module.exports = {
      * async 函数中必须存在 await 语句
      */
     'require-await': 'off',
-    /**
-     * 限制一行中的语句数量
-     */
-    'require-jsdoc': [
-      'error',
-      {
-        require: {
-          FunctionDeclaration: true,
-          MethodDefinition: false,
-          ClassDeclaration: false,
-          ArrowFunctionExpression: false,
-          FunctionExpression: false,
-        },
-      },
-    ],
     /**
      * 正则表达式中必须要加上 u 标志
      */

@@ -69,6 +69,7 @@
       {
         "types": {
           "{}": false,
+          "Function": false,
           "Object": { "message": "Use '{}' instead", "fixWith": "{}" },
           "String": { "message": "Use 'string' instead", "fixWith": "string" },
           "Number": { "message": "Use 'number' instead", "fixWith": "number" },
@@ -76,7 +77,7 @@
         }
       }
     ],
-    "description": "禁止使用指定的类型\n不使用 Object, String, Number, Boolean 类型，而使用原生的 ts 类型",
+    "description": "禁止使用指定的类型\n不使用 Object, String, Number, Boolean 类型，而使用原生的 ts 类型，允许使用 Function 用于装饰器包装",
     "reason": "统一代码风格",
     "badExample": "<span class=\"token keyword\">let</span> foo<span class=\"token punctuation\">:</span> <mark class=\"eslint-error\" data-tip=\"Don&amp;apos;t use `Object` as a type. Use &amp;apos;{}&amp;apos; instead&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/ban-types)&lt;/span&gt;\">Object</mark> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">let</span> bar<span class=\"token punctuation\">:</span> <mark class=\"eslint-error\" data-tip=\"Don&amp;apos;t use `String` as a type. Use &amp;apos;string&amp;apos; instead&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/ban-types)&lt;/span&gt;\">String</mark> <span class=\"token operator\">=</span> <span class=\"token string\">''</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">let</span> baz<span class=\"token punctuation\">:</span> <mark class=\"eslint-error\" data-tip=\"Don&amp;apos;t use `Number` as a type. Use &amp;apos;number&amp;apos; instead&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/ban-types)&lt;/span&gt;\">Number</mark> <span class=\"token operator\">=</span> <span class=\"token number\">1</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">let</span> qux<span class=\"token punctuation\">:</span> <mark class=\"eslint-error\" data-tip=\"Don&amp;apos;t use `Boolean` as a type. Use &amp;apos;boolean&amp;apos; instead&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/ban-types)&lt;/span&gt;\">Boolean</mark> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">;</span>",
     "goodExample": "<span class=\"token keyword\">let</span> foo<span class=\"token punctuation\">:</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">let</span> bar<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">=</span> <span class=\"token string\">''</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">let</span> baz<span class=\"token punctuation\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">=</span> <span class=\"token number\">1</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">let</span> qux<span class=\"token punctuation\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">;</span>",
@@ -99,6 +100,17 @@
     "reason": "",
     "badExample": "<span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo1</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">public</span> <span class=\"token keyword\">get</span> <span class=\"token function\"><mark class=\"eslint-error\" data-tip=\"Literals should be exposed using readonly fields.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/class-literal-property-style)&lt;/span&gt;\">bar</mark></span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token keyword\">return</span> <span class=\"token number\">1</span><span class=\"token punctuation\">;</span>\n  <span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span>",
     "goodExample": "<span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo2</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">public</span> <span class=\"token keyword\">readonly</span> bar <span class=\"token operator\">=</span> <span class=\"token number\">1</span><span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span>",
+    "fixable": true,
+    "extendsBaseRule": "",
+    "requiresTypeChecking": false
+  },
+  "@typescript-eslint/consistent-generic-constructors": {
+    "name": "@typescript-eslint/consistent-generic-constructors",
+    "value": "off",
+    "description": "使用 Map 或 Set 时，必须在构造函数上用泛型定义类型",
+    "reason": "",
+    "badExample": "",
+    "goodExample": "",
     "fixable": true,
     "extendsBaseRule": "",
     "requiresTypeChecking": false
@@ -135,6 +147,17 @@
     "fixable": true,
     "extendsBaseRule": "",
     "requiresTypeChecking": false
+  },
+  "@typescript-eslint/consistent-type-exports": {
+    "name": "@typescript-eslint/consistent-type-exports",
+    "value": "off",
+    "description": "一致的类型导出语法",
+    "reason": "",
+    "badExample": "",
+    "goodExample": "",
+    "fixable": true,
+    "extendsBaseRule": "",
+    "requiresTypeChecking": true
   },
   "@typescript-eslint/consistent-type-imports": {
     "name": "@typescript-eslint/consistent-type-imports",
@@ -270,7 +293,7 @@
     "reason": "统一代码风格",
     "badExample": "<span class=\"token keyword\">interface</span> <span class=\"token class-name\">ITest1</span> <span class=\"token punctuation\">{</span>\n  foo<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n  bar<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span>\n\n<span class=\"token keyword\">type</span> TTest2 <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n  foo<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n  bar<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">type</span> TTest3 <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> foo<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span><mark class=\"eslint-error\" data-tip=\"Expected a comma.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/member-delimiter-style)&lt;/span&gt;\"> </mark>bar<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">const</span> test4<span class=\"token punctuation\">:</span> <span class=\"token punctuation\">{</span>\n  x<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n  y<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span><mark class=\"eslint-error\" data-tip=\"Expected a comma.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/member-delimiter-style)&lt;/span&gt;\"></mark><mark class=\"eslint-error\" data-tip=\"Unexpected separator (;).&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/member-delimiter-style)&lt;/span&gt;\"></mark><mark class=\"eslint-error\" data-tip=\"Expected a comma.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/member-delimiter-style)&lt;/span&gt;\"></mark><mark class=\"eslint-error\" data-tip=\"Unexpected separator (;).&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/member-delimiter-style)&lt;/span&gt;\"></mark>",
     "goodExample": "<span class=\"token keyword\">interface</span> <span class=\"token class-name\">ITest1</span> <span class=\"token punctuation\">{</span>\n  foo<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n  bar<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span>\n\n<span class=\"token keyword\">type</span> TTest2 <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n  foo<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span>\n  bar<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">type</span> TTest3 <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> foo<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> bar<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">const</span> test4<span class=\"token punctuation\">:</span> <span class=\"token punctuation\">{</span>\n  x<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span>\n  y<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>",
-    "fixable": true,
+    "fixable": false,
     "extendsBaseRule": "",
     "requiresTypeChecking": false
   },
@@ -384,15 +407,15 @@
     "extendsBaseRule": "no-dupe-class-members",
     "requiresTypeChecking": false
   },
-  "@typescript-eslint/no-duplicate-imports": {
-    "name": "@typescript-eslint/no-duplicate-imports",
+  "@typescript-eslint/no-duplicate-enum-values": {
+    "name": "@typescript-eslint/no-duplicate-enum-values",
     "value": "error",
-    "description": "禁止重复导入模块",
+    "description": "禁止枚举类型存在两个相同的值",
     "reason": "",
-    "badExample": "<span class=\"token keyword\">import</span> <span class=\"token punctuation\">{</span> readFile <span class=\"token punctuation\">}</span> <span class=\"token keyword\">from</span> <span class=\"token string\">'fs'</span><span class=\"token punctuation\">;</span>\n<mark class=\"eslint-error\" data-tip=\"&amp;apos;fs&amp;apos; import is duplicated.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-duplicate-imports)&lt;/span&gt;\"><span class=\"token keyword\">import</span> <span class=\"token punctuation\">{</span> writeFile <span class=\"token punctuation\">}</span> <span class=\"token keyword\">from</span> <span class=\"token string\">'fs'</span><span class=\"token punctuation\">;</span></mark>",
-    "goodExample": "<span class=\"token keyword\">import</span> <span class=\"token punctuation\">{</span> readFile<span class=\"token punctuation\">,</span> writeFile <span class=\"token punctuation\">}</span> <span class=\"token keyword\">from</span> <span class=\"token string\">'fs'</span><span class=\"token punctuation\">;</span>",
+    "badExample": "<span class=\"token keyword\">enum</span> <span class=\"token constant\">E1</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token constant\">A</span> <span class=\"token operator\">=</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span>\n  <mark class=\"eslint-error\" data-tip=\"Duplicate enum member value 0.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-duplicate-enum-values)&lt;/span&gt;\"><span class=\"token constant\">B</span> <span class=\"token operator\">=</span> <span class=\"token number\">0</span></mark><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>",
+    "goodExample": "<span class=\"token keyword\">enum</span> <span class=\"token constant\">E2</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token constant\">A</span> <span class=\"token operator\">=</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span>\n  <span class=\"token constant\">B</span> <span class=\"token operator\">=</span> <span class=\"token number\">1</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>",
     "fixable": false,
-    "extendsBaseRule": "no-duplicate-imports",
+    "extendsBaseRule": "",
     "requiresTypeChecking": false
   },
   "@typescript-eslint/no-dynamic-delete": {
@@ -521,7 +544,7 @@
     "value": "error",
     "description": "禁止使用无意义的 void 类型",
     "reason": "void 只能用在函数的返回值中",
-    "badExample": "<span class=\"token keyword\">type</span> Foo1 <span class=\"token operator\">=</span> <span class=\"token keyword\"><mark class=\"eslint-error\" data-tip=\"void is only valid as a return type or generic type variable.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-invalid-void-type)&lt;/span&gt;\">void</mark></span><span class=\"token punctuation\">;</span>",
+    "badExample": "<span class=\"token keyword\">type</span> Foo1 <span class=\"token operator\">=</span> <span class=\"token keyword\"><mark class=\"eslint-error\" data-tip=\"void is only valid as a return type or generic type argument.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-invalid-void-type)&lt;/span&gt;\">void</mark></span><span class=\"token punctuation\">;</span>",
     "goodExample": "<span class=\"token keyword\">type</span> <span class=\"token function-variable function\">Foo2</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span>",
     "fixable": false,
     "extendsBaseRule": "",
@@ -598,7 +621,7 @@
     "value": ["error", { "allowDeclarations": true, "allowDefinitionFiles": true }],
     "description": "禁止使用 namespace 来定义命名空间",
     "reason": "使用 es6 引入模块，才是更标准的方式。\n但是允许使用 declare namespace ... {} 来定义外部命名空间",
-    "badExample": "<mark class=\"eslint-error\" data-tip=\"ES2015 module syntax is preferred over custom TypeScript modules and namespaces.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-namespace)&lt;/span&gt;\"><span class=\"token keyword\">namespace</span> foo1 <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span></mark>",
+    "badExample": "<mark class=\"eslint-error\" data-tip=\"ES2015 module syntax is preferred over namespaces.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-namespace)&lt;/span&gt;\"><span class=\"token keyword\">namespace</span> foo1 <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span></mark>",
     "goodExample": "<span class=\"token keyword\">declare</span> <span class=\"token keyword\">namespace</span> foo1 <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>",
     "fixable": false,
     "extendsBaseRule": "",
@@ -637,17 +660,6 @@
     "extendsBaseRule": "",
     "requiresTypeChecking": false
   },
-  "@typescript-eslint/no-parameter-properties": {
-    "name": "@typescript-eslint/no-parameter-properties",
-    "value": "error",
-    "description": "禁止给类的构造函数的参数添加修饰符",
-    "reason": "强制所有属性都定义到类里面，比较统一",
-    "badExample": "<span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo1</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">constructor</span><span class=\"token punctuation\">(</span><span class=\"token parameter\"><mark class=\"eslint-error\" data-tip=\"Property name cannot be declared in the constructor.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-parameter-properties)&lt;/span&gt;\"><span class=\"token keyword\">private</span> name<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span></mark></span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span>",
-    "goodExample": "<span class=\"token keyword\">class</span> <span class=\"token class-name\">Foo2</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">constructor</span><span class=\"token punctuation\">(</span><span class=\"token parameter\">name<span class=\"token punctuation\">:</span> <span class=\"token builtin\">string</span></span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span>",
-    "fixable": false,
-    "extendsBaseRule": "",
-    "requiresTypeChecking": false
-  },
   "@typescript-eslint/no-redeclare": {
     "name": "@typescript-eslint/no-redeclare",
     "value": "off",
@@ -658,6 +670,17 @@
     "fixable": false,
     "extendsBaseRule": "no-redeclare",
     "requiresTypeChecking": false
+  },
+  "@typescript-eslint/no-redundant-type-constituents": {
+    "name": "@typescript-eslint/no-redundant-type-constituents",
+    "value": "off",
+    "description": "禁止无用的联合类型或交叉类型",
+    "reason": "",
+    "badExample": "",
+    "goodExample": "",
+    "fixable": false,
+    "extendsBaseRule": "",
+    "requiresTypeChecking": true
   },
   "@typescript-eslint/no-require-imports": {
     "name": "@typescript-eslint/no-require-imports",
@@ -787,7 +810,7 @@
     "reason": "",
     "badExample": "<span class=\"token keyword\">interface</span> <span class=\"token class-name\">FooAny</span><span class=\"token operator\">&lt;</span><mark class=\"eslint-error\" data-tip=\"Constraining the generic type `T` to `any` does nothing and is unnecessary.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-unnecessary-type-constraint)&lt;/span&gt;\"><span class=\"token constant\">T</span> <span class=\"token keyword\">extends</span> <span class=\"token class-name\">any</span></mark><span class=\"token operator\">></span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>\n<span class=\"token keyword\">interface</span> <span class=\"token class-name\">FooUnknown</span><span class=\"token operator\">&lt;</span><mark class=\"eslint-error\" data-tip=\"Constraining the generic type `T` to `unknown` does nothing and is unnecessary.&lt;br/&gt;&lt;span class='eslint-error-rule-id'&gt;eslint(@typescript-eslint/no-unnecessary-type-constraint)&lt;/span&gt;\"><span class=\"token constant\">T</span> <span class=\"token keyword\">extends</span> <span class=\"token class-name\">unknown</span></mark><span class=\"token operator\">></span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>",
     "goodExample": "<span class=\"token keyword\">interface</span> <span class=\"token class-name\">Foo</span><span class=\"token operator\">&lt;</span><span class=\"token constant\">T</span><span class=\"token operator\">></span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>",
-    "fixable": true,
+    "fixable": false,
     "extendsBaseRule": "",
     "requiresTypeChecking": false
   },
@@ -823,6 +846,17 @@
     "fixable": false,
     "extendsBaseRule": "",
     "requiresTypeChecking": true
+  },
+  "@typescript-eslint/no-unsafe-declaration-merging": {
+    "name": "@typescript-eslint/no-unsafe-declaration-merging",
+    "value": "off",
+    "description": "禁止 class 和 interface 合并类型",
+    "reason": "",
+    "badExample": "",
+    "goodExample": "",
+    "fixable": false,
+    "extendsBaseRule": "",
+    "requiresTypeChecking": false
   },
   "@typescript-eslint/no-unsafe-member-access": {
     "name": "@typescript-eslint/no-unsafe-member-access",
@@ -890,6 +924,17 @@
     "extendsBaseRule": "no-useless-constructor",
     "requiresTypeChecking": false
   },
+  "@typescript-eslint/no-useless-empty-export": {
+    "name": "@typescript-eslint/no-useless-empty-export",
+    "value": "off",
+    "description": "禁止导出空对象",
+    "reason": "",
+    "badExample": "",
+    "goodExample": "",
+    "fixable": true,
+    "extendsBaseRule": "",
+    "requiresTypeChecking": false
+  },
   "@typescript-eslint/no-var-requires": {
     "name": "@typescript-eslint/no-var-requires",
     "value": "off",
@@ -921,6 +966,17 @@
     "goodExample": "",
     "fixable": false,
     "extendsBaseRule": "padding-line-between-statements",
+    "requiresTypeChecking": false
+  },
+  "@typescript-eslint/parameter-properties": {
+    "name": "@typescript-eslint/parameter-properties",
+    "value": "off",
+    "description": "类的构造函数参数作为类属性时，必须加上可访问性修饰符",
+    "reason": "",
+    "badExample": "",
+    "goodExample": "",
+    "fixable": false,
+    "extendsBaseRule": "",
     "requiresTypeChecking": false
   },
   "@typescript-eslint/prefer-as-const": {
@@ -1165,10 +1221,10 @@
     "extendsBaseRule": "no-return-await",
     "requiresTypeChecking": true
   },
-  "@typescript-eslint/sort-type-union-intersection-members": {
-    "name": "@typescript-eslint/sort-type-union-intersection-members",
+  "@typescript-eslint/sort-type-constituents": {
+    "name": "@typescript-eslint/sort-type-constituents",
     "value": "off",
-    "description": "联合类型和交叉类型的每一项必须按字母排序",
+    "description": "联合类型和交叉类型必须排序",
     "reason": "",
     "badExample": "",
     "goodExample": "",

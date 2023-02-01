@@ -3,11 +3,12 @@
  * https://jiandaoyun.github.io/nstarter-eslint-config/
  *
  * 依赖版本：
- *   eslint ^7.32.0
+ *   eslint ^8.31.0
  *   eslint-plugin-import undefined
+ *   @babel/core undefined
  *   @babel/eslint-parser undefined
- *   @typescript-eslint/parser undefined
- *   @typescript-eslint/eslint-plugin undefined
+ *   @typescript-eslint/parser ^5.48.1
+ *   @typescript-eslint/eslint-plugin ^5.48.1
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */
@@ -45,7 +46,7 @@ module.exports = {
     '@typescript-eslint/ban-tslint-comment': 'off',
     /**
      * 禁止使用指定的类型
-     * 不使用 Object, String, Number, Boolean 类型，而使用原生的 ts 类型
+     * 不使用 Object, String, Number, Boolean 类型，而使用原生的 ts 类型，允许使用 Function 用于装饰器包装
      * @reason 统一代码风格
      */
     '@typescript-eslint/ban-types': [
@@ -53,6 +54,7 @@ module.exports = {
       {
         types: {
           '{}': false,
+          Function: false,
           Object: {
             message: "Use '{}' instead",
             fixWith: '{}',
@@ -82,6 +84,10 @@ module.exports = {
      */
     '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
     /**
+     * 使用 Map 或 Set 时，必须在构造函数上用泛型定义类型
+     */
+    '@typescript-eslint/consistent-generic-constructors': 'off',
+    /**
      * 必须使用内置的 Record<K, T> 来描述仅包含可索引成员的接口
      */
     '@typescript-eslint/consistent-indexed-object-style': 'off',
@@ -101,6 +107,10 @@ module.exports = {
      * @reason interface 可以 implement, extend 和 merge
      */
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    /**
+     * 一致的类型导出语法
+     */
+    '@typescript-eslint/consistent-type-exports': 'off',
     /**
      * 必须使用 import type 导入类型
      */
@@ -261,10 +271,9 @@ module.exports = {
     'no-dupe-class-members': 'off',
     '@typescript-eslint/no-dupe-class-members': 'off',
     /**
-     * 禁止重复导入模块
+     * 禁止枚举类型存在两个相同的值
      */
-    'no-duplicate-imports': 'off',
-    '@typescript-eslint/no-duplicate-imports': 'error',
+    '@typescript-eslint/no-duplicate-enum-values': 'error',
     /**
      * 禁止 delete 时传入的 key 是动态的
      */
@@ -375,16 +384,15 @@ module.exports = {
      */
     '@typescript-eslint/no-non-null-assertion': 'off',
     /**
-     * 禁止给类的构造函数的参数添加修饰符
-     * @reason 强制所有属性都定义到类里面，比较统一
-     */
-    '@typescript-eslint/no-parameter-properties': 'error',
-    /**
      * 禁止重复定义变量
      * @reason 禁用 var 之后，编译阶段就会报错了
      */
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'off',
+    /**
+     * 禁止无用的联合类型或交叉类型
+     */
+    '@typescript-eslint/no-redundant-type-constituents': 'off',
     /**
      * 禁止使用 require
      * 原则上禁止动态引用，对于循环依赖，通过 IOC 的方式解决。
@@ -457,6 +465,10 @@ module.exports = {
      */
     '@typescript-eslint/no-unsafe-call': 'off',
     /**
+     * 禁止 class 和 interface 合并类型
+     */
+    '@typescript-eslint/no-unsafe-declaration-merging': 'off',
+    /**
      * 禁止获取 any 类型的变量中的属性
      */
     '@typescript-eslint/no-unsafe-member-access': 'off',
@@ -494,6 +506,10 @@ module.exports = {
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
     /**
+     * 禁止导出空对象
+     */
+    '@typescript-eslint/no-useless-empty-export': 'off',
+    /**
      * 禁止使用 require 来引入模块
      * @reason no-require-imports 规则已经约束了 require
      */
@@ -507,6 +523,10 @@ module.exports = {
      */
     'padding-line-between-statements': 'off',
     '@typescript-eslint/padding-line-between-statements': 'off',
+    /**
+     * 类的构造函数参数作为类属性时，必须加上可访问性修饰符
+     */
+    '@typescript-eslint/parameter-properties': 'off',
     /**
      * 使用 as const 替代 as 'bar'
      * @reason as const 是新语法，不是很常见
@@ -604,9 +624,9 @@ module.exports = {
     'no-return-await': 'off',
     '@typescript-eslint/return-await': 'off',
     /**
-     * 联合类型和交叉类型的每一项必须按字母排序
+     * 联合类型和交叉类型必须排序
      */
-    '@typescript-eslint/sort-type-union-intersection-members': 'off',
+    '@typescript-eslint/sort-type-constituents': 'off',
     /**
      * 条件判断必须传入布尔值
      */
