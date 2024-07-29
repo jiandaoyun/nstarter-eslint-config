@@ -3,12 +3,12 @@
  * https://jiandaoyun.github.io/nstarter-eslint-config/
  *
  * 依赖版本：
- *   eslint ^8.31.0
- *   eslint-plugin-import undefined
- *   @babel/core undefined
- *   @babel/eslint-parser undefined
- *   @typescript-eslint/parser ^5.48.1
- *   @typescript-eslint/eslint-plugin ^5.48.1
+ *   eslint ^8.45.0
+ *   eslint-plugin-import ^2.29.1
+ *   @babel/core ^7.22.9
+ *   @babel/eslint-parser ^7.22.9
+ *   @typescript-eslint/parser ^7.17.0
+ *   @typescript-eslint/eslint-plugin ^7.17.0
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */
@@ -84,6 +84,11 @@ module.exports = {
      */
     '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
     /**
+     * 在类的非静态方法中，必须存在对 this 的引用
+     */
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/class-methods-use-this': 'off',
+    /**
      * 使用 Map 或 Set 时，必须在构造函数上用泛型定义类型
      */
     '@typescript-eslint/consistent-generic-constructors': 'off',
@@ -114,7 +119,7 @@ module.exports = {
     /**
      * 必须使用 import type 导入类型
      */
-    '@typescript-eslint/consistent-type-imports': 'off',
+    '@typescript-eslint/consistent-type-imports': 'error',
     /**
      * 有默认值或可选的参数必须放到最后
      */
@@ -275,6 +280,10 @@ module.exports = {
      */
     '@typescript-eslint/no-duplicate-enum-values': 'error',
     /**
+     * 不允许枚举同时具有数字和字符串成员
+     */
+    '@typescript-eslint/no-duplicate-type-constituents': 'off',
+    /**
      * 禁止 delete 时传入的 key 是动态的
      */
     '@typescript-eslint/no-dynamic-delete': 'off',
@@ -314,6 +323,10 @@ module.exports = {
      */
     'no-implied-eval': 'off',
     '@typescript-eslint/no-implied-eval': 'off',
+    /**
+     * 强制要求在只有内联类型限定符的情况下使用顶级导入类型限定符
+     */
+    '@typescript-eslint/no-import-type-side-effects': 'error',
     /**
      * 禁止给一个初始化时直接赋值为 number, string 的变量显式的声明类型
      * @reason 可以简化代码
@@ -357,6 +370,10 @@ module.exports = {
      * 避免错误的使用 Promise
      */
     '@typescript-eslint/no-misused-promises': 'off',
+    /**
+     * 不允许枚举同时具有数字和字符串成员
+     */
+    '@typescript-eslint/no-mixed-enums': 'off',
     /**
      * 禁止使用 namespace 来定义命名空间
      * @reason 使用 es6 引入模块，才是更标准的方式。
@@ -425,10 +442,6 @@ module.exports = {
     'no-throw-literal': 'off',
     '@typescript-eslint/no-throw-literal': 'off',
     /**
-     * 禁止使用类型别名
-     */
-    '@typescript-eslint/no-type-alias': 'off',
-    /**
      * 测试表达式中的布尔类型禁止与 true 或 false 直接比较
      */
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
@@ -469,6 +482,10 @@ module.exports = {
      */
     '@typescript-eslint/no-unsafe-declaration-merging': 'off',
     /**
+     * 禁止将枚举值与非枚举值进行比较
+     */
+    '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+    /**
      * 禁止获取 any 类型的变量中的属性
      */
     '@typescript-eslint/no-unsafe-member-access': 'off',
@@ -493,7 +510,7 @@ module.exports = {
      * @reason 编译阶段检查就足够了
      */
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
     /**
      * 禁止在定义变量之前就使用它
      * @reason 编译阶段检查就足够了
@@ -567,7 +584,7 @@ module.exports = {
     /**
      * 使用 optional chaining 替代 &&
      */
-    '@typescript-eslint/prefer-optional-chain': 'error',
+    '@typescript-eslint/prefer-optional-chain': 'off',
     /**
      * 私有变量如果没有在构造函数外被赋值，则必须设为 readonly
      */

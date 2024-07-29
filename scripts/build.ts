@@ -4,12 +4,14 @@ import path from 'path';
 
 import doctrine from 'doctrine';
 import prettier from 'prettier';
-import { ESLint, Linter } from 'eslint';
+import type { Linter } from 'eslint';
+import { ESLint } from 'eslint';
 const eslintInstance = new ESLint({});
 import insertTag from 'insert-tag';
 import xmlEscape from 'xml-escape';
 
-import { NAMESPACE_CONFIG, NAMESPACES, buildEslintrcMeta, Namespace, Rule } from '../config';
+import type { Namespace, Rule } from '../config';
+import { NAMESPACE_CONFIG, NAMESPACES, buildEslintrcMeta } from '../config';
 
 import '../site/public/vendors/prism';
 declare const Prism: any;
@@ -62,7 +64,7 @@ class Builder {
           // meta.docs.extendsBaseRule 若为 string，则表示继承的规则，若为 true，则提取继承的规则的名称
           meta.docs.extensionRule === true || meta.docs.extendsBaseRule === true
             ? ruleName.replace(NAMESPACE_CONFIG[this.namespace].rulePrefix, '')
-            : meta.docs.extendsBaseRule ?? '',
+            : (meta.docs.extendsBaseRule ?? ''),
         requiresTypeChecking: meta.docs.requiresTypeChecking ?? false,
       };
       return prev;
@@ -225,11 +227,11 @@ class Builder {
   }
 
   /** 经过 Prettier 格式化后写入文件 */
-  private writeWithPrettier(filePath: string, content: string, parser = 'babel') {
+  private async writeWithPrettier(filePath: string, content: string, parser = 'babel') {
     fs.writeFileSync(
       filePath,
       // 使用 prettier 格式化文件内容
-      prettier.format(content, {
+      await prettier.format(content, {
         ...require('../.prettierrc'),
         parser,
       }),

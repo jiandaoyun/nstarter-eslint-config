@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 import fs from 'fs';
 import path from 'path';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 
 import { NAMESPACE_CONFIG, NAMESPACES } from '../config';
 
@@ -9,8 +9,7 @@ let allRuleMap: Map<string, any> = new Map();
 /** 可用的规则（去除废弃的和 Prettier 的规则） */
 let activeRules: string[] = [];
 let deprecatedRules: string[] = [];
-// https://github.com/prettier/eslint-config-prettier/pull/217
-const prettierRules = [...Object.keys(require('eslint-config-prettier').rules), 'vue/quote-props'];
+const prettierRules = [...Object.keys(require('eslint-config-prettier').rules)];
 
 // 填充 deprecatedRules 和 activeRules
 Object.values(NAMESPACE_CONFIG).forEach(({ rulePrefix, pluginName }) => {
@@ -50,7 +49,7 @@ NAMESPACES.forEach((namespace) => {
       if (deprecatedRules.includes(fullRuleName)) {
         const errorMessage = `${fullRuleName} is deprecated, automatically removed`;
         errors.push(errorMessage);
-        rimraf.sync(fullRuleDir);
+        rimrafSync(fullRuleDir);
         console.error(errorMessage);
         return;
       }

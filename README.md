@@ -1,6 +1,6 @@
 # [NStarter ESLint 规则](https://jiandaoyun.github.io/nstarter-eslint-config/)
 
-[![Build Status](https://img.shields.io/travis/jiandaoyun/nstarter-eslint-config.svg)](https://travis-ci.org/jiandaoyun/nstarter-eslint-config) [![npm package](https://img.shields.io/npm/v/eslint-config-nstarter.svg)](https://www.npmjs.org/package/eslint-config-nstarter) [![npm downloads](http://img.shields.io/npm/dm/eslint-config-nstarter.svg)](https://www.npmjs.org/package/eslint-config-nstarter) 
+[![npm package](https://img.shields.io/npm/v/eslint-config-nstarter.svg)](https://www.npmjs.org/package/eslint-config-nstarter) [![npm downloads](http://img.shields.io/npm/dm/eslint-config-nstarter.svg)](https://www.npmjs.org/package/eslint-config-nstarter) 
 
 NStarter ESLint 规则在腾讯 Alloy ESLint 规则基础上定制而来，用于规范化 nstarter 系列项目的代码编写规范。
 
