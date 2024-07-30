@@ -3,12 +3,12 @@
  * https://jiandaoyun.github.io/nstarter-eslint-config/
  *
  * 依赖版本：
- *   eslint ^8.31.0
- *   eslint-plugin-import undefined
- *   @babel/core undefined
- *   @babel/eslint-parser undefined
- *   @typescript-eslint/parser ^5.48.1
- *   @typescript-eslint/eslint-plugin ^5.48.1
+ *   eslint ^8.45.0
+ *   eslint-plugin-import ^2.29.1
+ *   @babel/core ^7.22.9
+ *   @babel/eslint-parser ^7.22.9
+ *   @typescript-eslint/parser ^7.17.0
+ *   @typescript-eslint/eslint-plugin ^7.17.0
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */
@@ -965,8 +965,9 @@ module.exports = {
     'prefer-numeric-literals': 'error',
     /**
      * 使用 Object.hasOwn() 而不是 Object.prototype.hasOwnProperty.call()
+     * @reason ES2022 的新接口，兼容性不太好
      */
-    'prefer-object-has-own': 'error',
+    'prefer-object-has-own': 'off',
     /**
      * 必须使用 ... 而不是 Object.assign，除非 Object.assign 的第一个参数是一个变量
      */
