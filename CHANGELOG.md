@@ -1,5 +1,10 @@
 # Changelog
 
+## v4.0.1
+
+* 规则调整
+  - 默认关闭 `@typescript-eslint/no-unused-vars`
+
 ## v4.0.0
 
 * 升级上游 alloy 规则 -> 5.1.2

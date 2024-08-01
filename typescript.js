@@ -510,7 +510,7 @@ module.exports = {
      * @reason 编译阶段检查就足够了
      */
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
     /**
      * 禁止在定义变量之前就使用它
      * @reason 编译阶段检查就足够了
