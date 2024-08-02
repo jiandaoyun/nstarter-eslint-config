@@ -4,6 +4,8 @@ ARG NODE_IMAGE=node:20.16.0-alpine
 FROM ${NODE_IMAGE} as build-env
 WORKDIR /var/opt/build
 
+ENV HTTPS_PROXY=socks5://172.24.64.31:1080
+
 COPY . .
 RUN npm install
 
