@@ -23,6 +23,7 @@ async function main() {
     'import-no-default-export',
     'max-lines-per-function',
     'no-duplicate-imports',
+    'no-return-await',
     'node-no-new-require',
     'node-no-path-concat',
     'template-curly-spacing',
@@ -31,6 +32,7 @@ async function main() {
     '@typescript-eslint/no-duplicate-imports',
     '@typescript-eslint/no-empty-interface',
     '@typescript-eslint/prefer-function-type',
+    '@typescript-eslint/return-await',
   ];
 
   badResults.forEach((badReportForOneFile) => {

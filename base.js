@@ -7,8 +7,8 @@
  *   eslint-plugin-import ^2.29.1
  *   @babel/core ^7.22.9
  *   @babel/eslint-parser ^7.22.9
- *   @typescript-eslint/parser ^7.17.0
- *   @typescript-eslint/eslint-plugin ^7.17.0
+ *   @typescript-eslint/parser ^7.18.0
+ *   @typescript-eslint/eslint-plugin ^7.18.0
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */
@@ -676,7 +676,7 @@ module.exports = {
     /**
      * 禁止在 return 语句里使用 await
      */
-    'no-return-await': 'error',
+    'no-return-await': 'off',
     /**
      * 禁止出现 location.href = 'javascript:void(0)';
      * @reason 有些场景下还是需要用到这个

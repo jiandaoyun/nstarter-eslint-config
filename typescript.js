@@ -7,14 +7,17 @@
  *   eslint-plugin-import ^2.29.1
  *   @babel/core ^7.22.9
  *   @babel/eslint-parser ^7.22.9
- *   @typescript-eslint/parser ^7.17.0
- *   @typescript-eslint/eslint-plugin ^7.17.0
+ *   @typescript-eslint/parser ^7.18.0
+ *   @typescript-eslint/eslint-plugin ^7.18.0
  *
  * 此文件是由脚本 scripts/build.ts 自动生成
  */
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   rules: {
     /**
      * 重载的函数必须写在一起
@@ -636,10 +639,10 @@ module.exports = {
      */
     '@typescript-eslint/restrict-template-expressions': 'off',
     /**
-     * 禁止在 return 语句里使用 await
+     * 建议使用 return await promise，利于调试与问题排查
      */
     'no-return-await': 'off',
-    '@typescript-eslint/return-await': 'off',
+    '@typescript-eslint/return-await': ['warn', 'always'],
     /**
      * 联合类型和交叉类型必须排序
      */

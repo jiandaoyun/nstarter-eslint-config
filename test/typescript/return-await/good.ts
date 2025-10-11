@@ -1,0 +1,13 @@
+async function validAlways1() {
+  try {
+    return await Promise.resolve('try');
+  } catch (e) {}
+}
+
+async function validAlways2() {
+  return await Promise.resolve('try');
+}
+
+async function validAlways3() {
+  return 'value';
+}
