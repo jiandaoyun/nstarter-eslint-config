@@ -1,5 +1,15 @@
 # Changelog
 
+## v4.1.0
+
+* 规则变更
+  - 不再使用因历史性能问题启用的 `no-return-await` 规则
+  - 默认启用 `@typescript-eslint/return-await` 警告规则，建议优先使用 `return await promise`，便于调试与问题排查。避免 `try catch` 下异常处理控制流行为时机不符合预期的问题
+
+* 锁定 `@typescript-eslint` 版本到 7.x，不完全兼容 8.x 版本后续的规则调整
+* 启用 typescript 类型检查相关规则
+
+
 ## v4.0.1
 
 * 规则调整

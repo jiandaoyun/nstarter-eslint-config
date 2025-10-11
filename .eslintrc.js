@@ -3,4 +3,7 @@ module.exports = {
   globals: {
     Prism: false,
   },
+  parserOptions: {
+    project: './tsconfig.json',
+  },
 };
